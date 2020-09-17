@@ -14,8 +14,9 @@
     <module>myBlog_commons</module>
     <module>myBlog_gateway</module>
     <module>myBlog_register</module>
-    <module>myBlog_service</module>
     <module>myBlog_utils</module>
+    <module>myBlog_config</module>
+    <module>myBlog_business</module>
   </modules>
 
   <parent>
@@ -29,8 +30,8 @@
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
     <spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
+    <lombok>1.18.12</lombok>
   </properties>
-
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -39,6 +40,15 @@
     <dependency>
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-context</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>${lombok}</version>
     </dependency>
   </dependencies>
 
