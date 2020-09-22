@@ -3,11 +3,11 @@ spring:
     name: admin-api
   cloud:
     config:
-      profile: dev
-      fail-fast: true
       discovery:
-        enable: true
-        serviceId: myBlog-config
+        service-id: myBlog-config
+        enabled: true
+      profile: dev
+
 eureka:
   client:
     serviceUrl:
@@ -16,14 +16,6 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
 
 
-server:
-  port: 8090
-mybatis:
-  mapper-locations: classpath:com/nzc/buiness/mapper/*.xml
-  type-aliases-package: com.nzc.business.entity
 
-  datasource:
-    driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/myblog?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false
-    username: root
-    password: 123456
+
+

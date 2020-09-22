@@ -9,18 +9,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
+
 @RestController
 public class BlogController implements BlogRestApi {
     @Autowired
     IBlogService blogService;
 
-    @Value("${from}")
-    String temp;
-
     @GetMapping("/add")
     @Override
     public void insert(BlogVo blogVo) {
-        System.out.println(this.temp);
+        BlogVo test = new BlogVo();
+        test.setBlogId("1111");
+        Date date =  new Date();
+        test.setCreateTime(date);
+        test.setUpdateTime(date);
+        blogService.insert(test);
     }
 
     @Override
