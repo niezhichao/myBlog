@@ -1,7 +1,9 @@
 package com.nzc.blog.common.base;
 
+import com.nzc.blog.common.result.ResultInfo;
+
 public interface BaseApi<T> {
-    void insert(T t);
-    void update(T t);
-    void delete(T t);
+    ResultInfo insert(T t);
+    ResultInfo update(T t);
+    ResultInfo delete(T t);
 }

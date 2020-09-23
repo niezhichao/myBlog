@@ -1,39 +1,36 @@
 package com.nzc.blog.admin.api.impl;
 
 import com.nzc.blog.admin.api.BlogRestApi;
-import com.nzc.business.service.IBlogService;
-import com.nzc.business.vo.BlogVo;
+import com.nzc.blog.common.result.ResultInfo;
+import com.nzc.blog.business.service.IBlogService;
+import com.nzc.blog.business.vo.BlogVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Date;
 
 @RestController
+@RequestMapping("blog")
 public class BlogController implements BlogRestApi {
     @Autowired
     IBlogService blogService;
 
-    @GetMapping("/add")
+    @PostMapping("/add")
     @Override
-    public void insert(BlogVo blogVo) {
-        BlogVo test = new BlogVo();
-        test.setBlogId("1111");
-        Date date =  new Date();
-        test.setCreateTime(date);
-        test.setUpdateTime(date);
-        blogService.insert(test);
+    public ResultInfo insert(BlogVo blogVo) {
+        blogService.insert(blogVo);
+        return ResultInfo.ok();
     }
 
     @Override
-    public void update(BlogVo blogVo) {
+    public ResultInfo update(BlogVo blogVo) {
+        return null;
     }
 
     @Override
-    public void delete(BlogVo blogVo) {
-
+    public ResultInfo delete(BlogVo blogVo) {
+            return null;
     }
 
 

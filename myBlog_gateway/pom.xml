@@ -11,5 +11,11 @@
 
     <artifactId>myBlog_gateway</artifactId>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zuul</artifactId>
+            <version>1.3.6.RELEASE</version>
+        </dependency>
+    </dependencies>
 </project>

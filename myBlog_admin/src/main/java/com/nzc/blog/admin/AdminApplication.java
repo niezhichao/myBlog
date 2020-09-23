@@ -8,7 +8,8 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @EnableEurekaClient
-@ComponentScan({"com.nzc.blog.admin","com.nzc.business"})
+@ComponentScan({"com.nzc.blog.admin","com.nzc.business.service.impl"})
+@MapperScan("com.nzc.business.dao")
 public class AdminApplication {
     public static void main(String[]  args){
         SpringApplication.run(AdminApplication.class,args);
