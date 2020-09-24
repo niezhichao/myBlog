@@ -1,0 +1,5 @@
+zuul:
+  routes:
+    blog:
+      path:/blog/**
+                               serviceId:admin-api

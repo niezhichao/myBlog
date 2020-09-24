@@ -6,5 +6,5 @@ spring:
      password: 123456
 
 mybatis:
-  mapper-locations: classpath:/com/nzc/business/mapper/*.xml
-  type-aliases-package: com.nzc.business.entity
+  mapper-locations: classpath:/com/nzc/blog/business/mapper/*.xml
+  type-aliases-package: com.nzc.blog.business.entity
