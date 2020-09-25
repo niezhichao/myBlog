@@ -20,8 +20,8 @@ public class BlogInfoDaoTest {
     @Autowired
     BlogDao blogDao;
 
-@Test
-    public void testDao(){
+    @Test
+    public void testDao() {
         Blog blog = new Blog();
         blog.setBlogId("112");
         blog.setCreateTime(new Date());

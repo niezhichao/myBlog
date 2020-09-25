@@ -2,4 +2,4 @@ zuul:
   routes:
     blog:
       path:/blog/**
-                               serviceId:admin-api
+      serviceId:admin-api

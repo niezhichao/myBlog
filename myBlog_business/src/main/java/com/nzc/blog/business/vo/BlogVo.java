@@ -11,18 +11,18 @@ import java.util.Date;
 @AllArgsConstructor
 public class BlogVo {
     private  String blogId;
-    private  String title;
-    private  String content;
-    private  String tagId;
+    private  String title;//标题
+    private  String content;//内容
+    private  String tagId;//标签
     private  String fileId;
     private  String status;
     private  Date createTime;
     private Date updateTime;
 
     private  String ifOriginal;
-    private  String author;
-    private  String articlesQuoted;
-    private  String blogSortedId;
+    private  String author;//作者
+    private  String articlesQuoted;//文章来源
+    private  String blogSortedId;//分类
     private  String ifPublish;
     private  String sort;
 }
