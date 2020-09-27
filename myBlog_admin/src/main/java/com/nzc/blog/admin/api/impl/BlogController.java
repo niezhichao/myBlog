@@ -30,9 +30,12 @@ public class BlogController implements BlogRestApi {
 
     @Override
     public ResultInfo delete(BlogVo blogVo) {
-            return null;
+        return null;
     }
 
-
+    @GetMapping("/get")
+    public ResultInfo getBlog() {
+        return ResultInfo.ok();
+    }
 
 }
