@@ -1,5 +1,5 @@
 zuul:
   routes:
     admin-api:
-      path: /blog/**
+      path: /admin-api/**
       serviceId: admin-api

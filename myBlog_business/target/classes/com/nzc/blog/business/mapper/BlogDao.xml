@@ -19,7 +19,7 @@
             blog_sort_id,
             is_publish,
             sort) values (
-            #{blogId},
+            #{pid},
             #{title},
             #{content},
             #{tagId},

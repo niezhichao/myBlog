@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
+import java.util.List;
+
 @Service
 public class BlogServiceImpl implements IBlogService {
     @Autowired
@@ -18,7 +21,7 @@ public class BlogServiceImpl implements IBlogService {
     @Transactional
     @Override
     public void insert(BlogVo blogVo) {
-        blogVo.setBlogId(BlogUtil.generateId());
+        blogVo.setPid(BlogUtil.generateId());
         Blog target = new Blog();
         BeanUtils.copyProperties(blogVo,target);
         blogDao.insertOne(target);
@@ -32,5 +35,10 @@ public class BlogServiceImpl implements IBlogService {
     @Override
     public void delete(BlogVo blogVo) {
 
+    }
+
+    @Override
+    public List<Blog> queryAll() {
+        return null;
     }
 }

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nzc.blog.business.dao.TagDao">
+
+    <insert id="insertOne" parameterType="TagInfo">
+
+        insert into tag_info(
+        tag_id,
+        tag_content,
+        status,
+        create_time,
+        update_time,
+        sort
+        )values (
+        #{pid},
+        #{tagContent},
+        #{status},
+        #{createTime},
+        #{updateTime},
+        #{sort}
+        )
+    </insert>
+    
+    <select id="queryAll" resultType="TagInfo">
+        select
+        tag_id as pid,
+        tag_content as tagContent,
+        status as  status,
+        create_time as createTime,
+        update_time as updateTime,
+        sort as sort
+        from tag_info
+    </select>
+</mapper>
+
