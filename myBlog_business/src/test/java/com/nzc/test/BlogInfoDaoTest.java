@@ -15,7 +15,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = BusiApp.class)
@@ -30,6 +32,7 @@ public class BlogInfoDaoTest {
 
     @Test
     public void blogTypeDaoTest() {
+        Map<String,String> map = new HashMap<>();
        List<BlogTypePo> list = blogTypeDao.queryAll();
        System.out.println(list.size());
     }

@@ -33,6 +33,11 @@ public class BaseEntity implements Serializable {
     private Date updateTime;
 
     /**
+     * 发布时间
+     */
+    private Date publicTime;
+
+    /**
      * 排序字段
      */
     private int sort;

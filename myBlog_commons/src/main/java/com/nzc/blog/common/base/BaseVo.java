@@ -24,9 +24,14 @@ public class BaseVo {
     /**
      * 创建时间
      */
-    private Date createTime = new Date();
+    private Date createTime;
     /**
      *  更新时间
      */
-    private Date updateTime = new Date();
+    private Date updateTime;
+
+    /**
+     * 发布时间
+     */
+    private Date publicTime;
 }
