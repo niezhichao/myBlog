@@ -4,7 +4,7 @@ import com.nzc.blog.admin.api.TagRestApi;
 import com.nzc.blog.business.entity.TagPo;
 import com.nzc.blog.business.service.ITagService;
 import com.nzc.blog.business.vo.TagVo;
-import com.nzc.blog.common.result.ResultInfo;
+import com.nzc.blog.business.result.ResultInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

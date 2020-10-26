@@ -1,9 +1,10 @@
 package com.nzc.blog.business.service;
 
+import com.github.pagehelper.PageInfo;
 import com.nzc.blog.business.entity.Blog;
 import com.nzc.blog.business.vo.BlogVo;
 import com.nzc.blog.common.base.BaseService;
 
-public interface IBlogService extends BaseService<BlogVo,Blog> {
+public interface IBlogService extends BaseService<BlogVo,PageInfo,Blog> {
 
 }

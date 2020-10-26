@@ -4,7 +4,7 @@ import com.nzc.blog.admin.api.BlogTypeRestApi;
 import com.nzc.blog.business.entity.BlogTypePo;
 import com.nzc.blog.business.service.IBlogTypeService;
 import com.nzc.blog.business.vo.BlogTypeVo;
-import com.nzc.blog.common.result.ResultInfo;
+import com.nzc.blog.business.result.ResultInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

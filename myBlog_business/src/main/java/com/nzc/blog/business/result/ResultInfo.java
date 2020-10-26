@@ -1,5 +1,6 @@
-package com.nzc.blog.common.result;
+package com.nzc.blog.business.result;
 
+import com.github.pagehelper.Page;
 import com.nzc.blog.common.constant.ResultCode;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,22 +15,22 @@ import java.util.Map;
  */
 @NoArgsConstructor
 @Data
-public class ResultInfo {
+public class ResultInfo extends PageCommon{
     private String resCode;
     private String resMsg;
     private Map<String,Object> mapData = new HashMap<>();
 
-    ResultInfo(String resCode, String resMsg){
+   public ResultInfo(String resCode, String resMsg){
         this.resCode = resCode;
         this.resMsg = resMsg;
     }
 
-    ResultInfo(Object data){
+   public  ResultInfo(Object data){
         this(ResultCode.SUCCESS);
         this.mapData.put("data",data);
     }
 
-    ResultInfo(ResultCode code){
+    public  ResultInfo(ResultCode code){
         this(code.getCode(),code.getMsg());
     }
 

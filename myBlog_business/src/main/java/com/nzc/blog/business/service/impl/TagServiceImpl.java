@@ -1,5 +1,6 @@
 package com.nzc.blog.business.service.impl;
 
+import com.github.pagehelper.PageInfo;
 import com.nzc.blog.business.dao.TagDao;
 import com.nzc.blog.business.entity.TagPo;
 import com.nzc.blog.business.service.ITagService;
@@ -35,6 +36,11 @@ public class TagServiceImpl implements ITagService {
     @Override
     public void delete(TagVo tagVo) {
 
+    }
+
+    @Override
+    public PageInfo queryList(TagVo tagVo) {
+        return null;
     }
 
     @Override

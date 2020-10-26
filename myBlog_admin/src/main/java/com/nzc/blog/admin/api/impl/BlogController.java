@@ -1,11 +1,16 @@
 package com.nzc.blog.admin.api.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
 import com.nzc.blog.admin.api.BlogRestApi;
-import com.nzc.blog.common.result.ResultInfo;
+import com.nzc.blog.business.entity.Blog;
+import com.nzc.blog.business.result.ResultInfo;
 import com.nzc.blog.business.service.IBlogService;
 import com.nzc.blog.business.vo.BlogVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("blog")
@@ -37,4 +42,14 @@ public class BlogController implements BlogRestApi {
         return null;
     }
 
+    @PostMapping("/list")
+    public ResultInfo getBlogList(@RequestBody BlogVo blogVo){
+        PageInfo<List<Blog>> pageInfo = blogService.queryList(blogVo);
+        ResultInfo resultInfo = new ResultInfo(pageInfo.getList());
+        Long total = pageInfo.getTotal();
+        resultInfo.setTotal(total);
+        resultInfo.setPageNum(pageInfo.getPageNum());
+        resultInfo.setPageSize(pageInfo.getPageSize());
+        return resultInfo;
+    }
 }

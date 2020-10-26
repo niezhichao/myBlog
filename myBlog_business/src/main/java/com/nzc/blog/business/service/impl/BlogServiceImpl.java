@@ -1,6 +1,7 @@
 package com.nzc.blog.business.service.impl;
 
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.nzc.blog.business.vo.BlogVo;
 import com.nzc.blog.business.dao.BlogDao;
 import com.nzc.blog.business.entity.Blog;
@@ -45,7 +46,17 @@ public class BlogServiceImpl implements IBlogService {
     }
 
     @Override
-    public List<Blog> queryAll() {
+    public PageInfo queryList(BlogVo blogVo) {
+        PageHelper.startPage(blogVo.getPageNum(),blogVo.getPageSize());
+        Blog target = new Blog();
+        BeanUtils.copyProperties(blogVo,target);
+        List<Blog> blogList = blogDao.queryList(target);
+        PageInfo<Blog> pageInfo = new PageInfo<>(blogList);
+        return pageInfo;
+    }
+
+    @Override
+    public List queryAll() {
         return null;
     }
 }

@@ -1,5 +1,6 @@
 package com.nzc.blog.business.service.impl;
 
+import com.github.pagehelper.PageInfo;
 import com.nzc.blog.business.dao.BlogTypeDao;
 import com.nzc.blog.business.entity.BlogTypePo;
 import com.nzc.blog.business.service.IBlogTypeService;
@@ -41,8 +42,11 @@ public class BlogTypeServiceImpl implements IBlogTypeService{
     }
 
     @Override
-    public List<BlogTypePo> queryAll() {
+    public PageInfo queryList(BlogTypeVo blogTypeVo) {
+        return null;
+    }
 
+    public List<BlogTypePo> queryAll() {
         return blogTypeDao.queryAll();
     }
 }

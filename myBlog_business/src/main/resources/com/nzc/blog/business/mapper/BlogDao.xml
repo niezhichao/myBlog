@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.nzc.blog.business.dao.BlogDao">
-        <insert id="insertOne" parameterType="BlogInfo">
+    <insert id="insertOne" parameterType="BlogInfo">
             insert into blog_info (
             blog_id,
             title,
@@ -37,5 +37,23 @@
             #{sort}
             )
         </insert>
+
+    <select id="queryList" parameterType="BlogInfo" resultType="BlogInfo">
+          select
+          a.title as title,
+          a.author as author,
+          a.create_time as createTime,
+          a.update_time as updateTime,
+          a.publish_time as publicTime,
+          a.blog_sort_id as blogSortedId,
+          a.is_publish as ifPublish
+          from blog_info a where 1=1
+          <if test="title != null and title !=''">
+                  and title like concat("%",#{title} ,"%")
+          </if>
+           <if test="blogSortedId != null and  blogSortedId !=''">
+                  and a.blog_sort_id = #{blogSortedId}
+           </if>
+    </select>
 </mapper>
 

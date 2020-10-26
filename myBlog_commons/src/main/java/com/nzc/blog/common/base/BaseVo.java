@@ -14,6 +14,15 @@ import java.util.Date;
 @NoArgsConstructor
 public class BaseVo {
     /**
+     * 分页大小
+     */
+    private Integer pageSize;
+
+    /**
+     * 页码
+     */
+    private Integer pageNum;
+    /**
      * 唯一id
      */
     private String pid;
