@@ -32,8 +32,12 @@ public class BlogInfoDaoTest {
 
     @Test
     public void blogTypeDaoTest() {
-        Map<String,String> map = new HashMap<>();
-       List<BlogTypePo> list = blogTypeDao.queryAll();
-       System.out.println(list.size());
+        Date now = new Date();
+       System.out.println(now);
+    }
+
+    public static void main(String[] args){
+        Date now = new Date();
+        System.out.println(now);
     }
 }
