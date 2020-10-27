@@ -1,5 +1,0 @@
-zuul:
-  routes:
-    admin-api:
-      path: /admin-api/**
-      serviceId: admin-api
