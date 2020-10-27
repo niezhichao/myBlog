@@ -1,0 +1,20 @@
+server:
+  port: 8899
+spring:
+  application:
+    name: myBlog-config
+  cloud:
+    config:
+      server:
+        native:
+          searchLocations: classpath:/config-repo/{profile}
+  profiles:
+    active: native
+eureka:
+  client:
+    serviceUrl:
+      register-with-eureka: true
+      fetch-registry: true
+      defaultZone: http://localhost:8761/eureka/
+
+

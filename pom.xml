@@ -34,6 +34,8 @@
     <mybatis.v>1.3.2</mybatis.v>
     <druid-version>1.0.31</druid-version>
     <pageHelper.v>1.2.4</pageHelper.v>
+    <swagger2-ui.version>2.8.0</swagger2-ui.version>
+    <swagger2-api.version>2.8.0</swagger2-api.version>
   </properties>
   <dependencies>
     <dependency>
@@ -61,6 +63,16 @@
 
   <dependencyManagement>
     <dependencies>
+      <dependency>
+        <groupId>io.springfox</groupId>
+        <artifactId>springfox-swagger2</artifactId>
+        <version>${swagger2-api.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.springfox</groupId>
+        <artifactId>springfox-swagger-ui</artifactId>
+        <version>${swagger2-ui.version}</version>
+      </dependency>
       <dependency>
         <groupId>com.alibaba</groupId>
         <artifactId>druid</artifactId>

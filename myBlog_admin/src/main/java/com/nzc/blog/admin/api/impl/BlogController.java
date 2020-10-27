@@ -7,11 +7,14 @@ import com.nzc.blog.business.entity.Blog;
 import com.nzc.blog.business.result.ResultInfo;
 import com.nzc.blog.business.service.IBlogService;
 import com.nzc.blog.business.vo.BlogVo;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Api(value = "博客管理相关接口",tags = "BlogRestApi")
 @RestController
 @RequestMapping("blog")
 public class BlogController implements BlogRestApi {
@@ -25,6 +28,7 @@ public class BlogController implements BlogRestApi {
      * @param blogVo
      * @return
      */
+    @ApiOperation(value = "添加博客",notes = "添加博客")
     @PostMapping("/add")
     @Override
     public ResultInfo insert(@RequestBody BlogVo blogVo) {
@@ -42,6 +46,8 @@ public class BlogController implements BlogRestApi {
         return null;
     }
 
+
+    @ApiOperation(value = "获取博客列表",notes = "获取博客列表")
     @PostMapping("/list")
     public ResultInfo getBlogList(@RequestBody BlogVo blogVo){
         PageInfo<List<Blog>> pageInfo = blogService.queryList(blogVo);

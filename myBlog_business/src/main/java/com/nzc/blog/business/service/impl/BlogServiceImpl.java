@@ -45,8 +45,16 @@ public class BlogServiceImpl implements IBlogService {
 
     }
 
+    /**
+     *
+     * @param blogVo
+     * @return
+     * PageHelper.startPage 方法后的第一个mapper方法 会进行分页
+     * PageInfo或者Page对象可以取得分页信息
+     */
     @Override
     public PageInfo queryList(BlogVo blogVo) {
+
         PageHelper.startPage(blogVo.getPageNum(),blogVo.getPageSize());
         Blog target = new Blog();
         BeanUtils.copyProperties(blogVo,target);
