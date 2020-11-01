@@ -14,7 +14,7 @@ public class BlogTypePo extends BaseEntity {
     /**
      * 类型名称
      */
-    private String typeName;
+        private String typeName;
     /**
      * 类型简介
      */

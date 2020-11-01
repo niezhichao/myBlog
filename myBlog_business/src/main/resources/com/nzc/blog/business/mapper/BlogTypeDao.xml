@@ -22,7 +22,7 @@
             #{sort}
             )
         </insert>
-        <select id="queryAll" resultType="BlogType" >
+        <select id="queryAll" resultType="BlogType">
                 select
                 blog_type_id as pid,
                 type_name as typeName,

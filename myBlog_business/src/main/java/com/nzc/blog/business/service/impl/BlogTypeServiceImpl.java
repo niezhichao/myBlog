@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -22,7 +23,7 @@ public class BlogTypeServiceImpl implements IBlogTypeService{
     @Transactional
     @Override
     public void insert(BlogTypeVo blogTypeVo) {
-
+        blogTypeVo.setCreateTime(new Date());
         blogTypeVo.setPid(BlogUtil.generateId());
         BlogTypePo target = new BlogTypePo();
         BeanUtils.copyProperties(blogTypeVo,target);
