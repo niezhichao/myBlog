@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -27,4 +29,9 @@ public class BlogVo extends BaseVo {
      */
     private  String ifPublish;
     private  String sort;
+
+    /**
+     * 发布时间
+     */
+    private Date publicTime;
 }

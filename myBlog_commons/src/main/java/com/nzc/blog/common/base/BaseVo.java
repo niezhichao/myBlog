@@ -39,8 +39,4 @@ public class BaseVo {
      */
     private Date updateTime;
 
-    /**
-     * 发布时间
-     */
-    private Date publicTime;
 }
