@@ -8,10 +8,7 @@ import com.nzc.blog.business.result.ResultInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,7 +23,7 @@ public class BlogTypeController implements BlogTypeRestApi {
     @ApiOperation(value = "添加分类",notes = "添加分类")
     @PostMapping("/add")
     @Override
-    public ResultInfo insert(BlogTypeVo blogTypeVo) {
+    public ResultInfo insert(@RequestBody BlogTypeVo blogTypeVo) {
         blogTypeService.insert(blogTypeVo);
         return ResultInfo.ok();
     }

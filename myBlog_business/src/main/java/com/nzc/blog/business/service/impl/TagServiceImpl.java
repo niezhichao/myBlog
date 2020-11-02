@@ -5,6 +5,7 @@ import com.nzc.blog.business.dao.TagDao;
 import com.nzc.blog.business.entity.TagPo;
 import com.nzc.blog.business.service.ITagService;
 import com.nzc.blog.business.vo.TagVo;
+import com.nzc.blog.common.constant.BlogCodeUtils;
 import com.nzc.blog.utils.BlogUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ public class TagServiceImpl implements ITagService {
     @Transactional
     @Override
     public void insert(TagVo tagVo) {
+        tagVo.setStatus(BlogCodeUtils.STATUS_VALID);
         tagVo.setPid(BlogUtil.generateId());
         TagPo taget = new TagPo();
         BeanUtils.copyProperties(tagVo,taget);

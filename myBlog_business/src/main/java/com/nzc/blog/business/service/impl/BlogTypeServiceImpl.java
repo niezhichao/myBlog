@@ -5,6 +5,7 @@ import com.nzc.blog.business.dao.BlogTypeDao;
 import com.nzc.blog.business.entity.BlogTypePo;
 import com.nzc.blog.business.service.IBlogTypeService;
 import com.nzc.blog.business.vo.BlogTypeVo;
+import com.nzc.blog.common.constant.BlogCodeUtils;
 import com.nzc.blog.utils.BlogUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ public class BlogTypeServiceImpl implements IBlogTypeService{
     @Override
     public void insert(BlogTypeVo blogTypeVo) {
         blogTypeVo.setCreateTime(new Date());
+        blogTypeVo.setStatus(BlogCodeUtils.STATUS_VALID);
         blogTypeVo.setPid(BlogUtil.generateId());
         BlogTypePo target = new BlogTypePo();
         BeanUtils.copyProperties(blogTypeVo,target);

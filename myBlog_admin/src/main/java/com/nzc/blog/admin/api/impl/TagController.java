@@ -6,10 +6,7 @@ import com.nzc.blog.business.service.ITagService;
 import com.nzc.blog.business.vo.TagVo;
 import com.nzc.blog.business.result.ResultInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,7 +19,7 @@ public class TagController implements TagRestApi {
 
     @PostMapping("/add")
     @Override
-    public ResultInfo insert(TagVo tagVo) {
+    public ResultInfo insert(@RequestBody TagVo tagVo) {
         tagService.insert(tagVo);
         return ResultInfo.ok();
     }

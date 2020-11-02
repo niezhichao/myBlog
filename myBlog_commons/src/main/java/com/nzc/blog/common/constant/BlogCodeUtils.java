@@ -10,4 +10,10 @@ public class BlogCodeUtils {
     public static final String IFPUBLISHYES = "1";
     public static  final String IFPUBLISHNO = "0";
 
+    /**
+     * 状态码
+     * 1 有效  0 无效
+     */
+    public static final String  STATUS_INVALID = "0";
+    public static final String  STATUS_VALID = "1";
 }
