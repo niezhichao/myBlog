@@ -22,7 +22,7 @@
         #{sort}
         )
     </insert>
-    
+
     <select id="queryAll" resultType="TagInfo">
         select
         tag_id as pid,
@@ -32,6 +32,25 @@
         update_time as updateTime,
         sort as sort
         from tag_info
+    </select>
+
+    <select id="queryList" parameterType="TagInfo" resultType="TagInfo">
+        select
+        tag_id as pid,
+        tag_content as tagContent,
+        status as  status,
+        create_time as createTime,
+        update_time as updateTime,
+        sort as sort
+        from tag_info
+        where 1=1
+        <if test="pid != null and pid !=''">
+            and tag_id = #{pid}
+        </if>
+
+        <if test="tagContent != null and tagContent !=''">
+            and tag_content like concat('%',#{tagContent},'%')
+        </if>
     </select>
 </mapper>
 

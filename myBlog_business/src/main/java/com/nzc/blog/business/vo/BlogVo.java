@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -34,4 +35,6 @@ public class BlogVo extends BaseVo {
      * 发布时间
      */
     private Date publicTime;
+
+    private List<TagVo>  tags;
 }

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nzc.blog.business.dao.RelationPoDao">
+    <insert id="insertOne" parameterType="RelationPo">
+            insert into relationType (
+            pid,
+            mainRelationKey,
+            relationTypeCode,
+            relatedKey,
+            create_time,
+            status
+            ) values (
+            #{pid},
+            #{mainRelationKey},
+            #{relationTypeCode},
+            #{relatedKey},
+            #{createTime},
+            #{status}
+            )
+        </insert>
+
+        <insert id="insertList" parameterType="RelationPo">
+            insert into relationType (
+            pid,
+            mainRelationKey,
+            relationTypeCode,
+            relatedKey,
+            create_time,
+            status
+            ) values
+            <foreach collection="list" item="item" index="index" separator=",">
+                    (
+                    #{item.pid},
+                    #{item.mainRelationKey},
+                    #{item.relationTypeCode},
+                    #{item.relatedKey},
+                    #{item.createTime},
+                    #{item.status}
+                    )
+            </foreach>
+        </insert>
+
+        <select id="queryList" parameterType="RelationPo" resultType="RelationPo">
+                select
+                pid as pid,
+                mainRelationKey as mainRelationKey,
+                relationTypeCode as relationTypeCode,
+                relatedKey as relatedKey,
+                create_time as createTime,
+                status as status
+                from relationType
+                where 1=1
+                <if test="mainRelationKey != null and mainRelationKey !=''">
+                          and mainRelationKey = #{mainRelationKey}
+                </if>
+
+                <if test="relationTypeCode != null and relationTypeCode != ''">
+                        and relationTypeCode=#{relationTypeCode}
+                </if>
+
+                <if test="relatedKey !=null and relatedKey != ''">
+                        and relatedKey = #{relatedKey}
+                </if>
+        </select>
+</mapper>
+

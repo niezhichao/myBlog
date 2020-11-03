@@ -49,12 +49,7 @@ public class BlogController implements BlogRestApi {
     @ApiOperation(value = "获取博客列表",notes = "获取博客列表")
     @PostMapping("/list")
     public ResultInfo getBlogList(@RequestBody BlogVo blogVo){
-        PageInfo<List<Blog>> pageInfo = blogService.queryList(blogVo);
-        ResultInfo resultInfo = new ResultInfo(pageInfo.getList());
-        Long total = pageInfo.getTotal();
-        resultInfo.setTotal(total);
-        resultInfo.setPageNum(pageInfo.getPageNum());
-        resultInfo.setPageSize(pageInfo.getPageSize());
-        return resultInfo;
+        PageInfo<List<Blog>> pageInfo = blogService.queryListWithPage(blogVo);
+        return ResultInfo.page(pageInfo);
     }
 }

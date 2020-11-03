@@ -30,5 +30,24 @@
                 status as status
                 from blog_type
         </select>
+
+        <select id="queryList" parameterType="BlogType" resultType="BlogType">
+                select
+                blog_type_id as pid,
+                type_name as typeName,
+                content as content,
+                status as status
+                from blog_type
+                where 1=1
+                <if test="pid != null and pid !=''">
+                        and pid = #{pid}
+                </if>
+                <if test="typeName != null and typeName !=''">
+                        and type_name like concat('%',#{typeName} ,'%')
+                </if>
+                <if test="content != null and content !=''">
+                        and content like concat('%',#{content} ,'%')
+                </if>
+        </select>
 </mapper>
 

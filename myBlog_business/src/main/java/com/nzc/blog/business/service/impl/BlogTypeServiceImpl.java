@@ -1,5 +1,6 @@
 package com.nzc.blog.business.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.nzc.blog.business.dao.BlogTypeDao;
 import com.nzc.blog.business.entity.BlogTypePo;
@@ -45,10 +46,23 @@ public class BlogTypeServiceImpl implements IBlogTypeService{
     }
 
     @Override
-    public PageInfo queryList(BlogTypeVo blogTypeVo) {
-        return null;
+    public PageInfo queryListWithPage(BlogTypeVo blogTypeVo) {
+        PageHelper.startPage(blogTypeVo.getPageNum(),blogTypeVo.getPageSize());
+        BlogTypePo target = new BlogTypePo();
+        BeanUtils.copyProperties(blogTypeVo,target);
+        List<BlogTypePo>  blogTypePos = blogTypeDao.queryList(target);
+        return new PageInfo<>(blogTypePos);
     }
 
+    @Override
+    public PageInfo queryAllWithPage(int currentPage,int pageSize) {
+        PageHelper.startPage(currentPage,pageSize);
+        List<BlogTypePo> blogTypePoList = blogTypeDao.queryAll();
+        return  new PageInfo<>(blogTypePoList);
+    }
+
+
+    @Override
     public List<BlogTypePo> queryAll() {
         return blogTypeDao.queryAll();
     }

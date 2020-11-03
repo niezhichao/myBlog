@@ -10,7 +10,7 @@ public interface BaseService<T,R,K> {
     void insert(T t);
     void update(T t);
     void delete(T t);
-    R queryList(T t);
-    List<K> queryAll();
+    R queryListWithPage(T t);
+    R  queryAllWithPage(int currentPage,int pageSize);
 
 }

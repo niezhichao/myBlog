@@ -1,5 +1,6 @@
 package com.nzc.blog.admin.api.impl;
 
+import com.github.pagehelper.PageInfo;
 import com.nzc.blog.admin.api.BlogTypeRestApi;
 import com.nzc.blog.business.entity.BlogTypePo;
 import com.nzc.blog.business.service.IBlogTypeService;
@@ -38,9 +39,17 @@ public class BlogTypeController implements BlogTypeRestApi {
         return null;
     }
 
+    @ApiOperation(value = "获取所有分类",notes = "获取所有分类")
     @GetMapping("/all")
     public  ResultInfo getAll(){
-        List<BlogTypePo> data = blogTypeService.queryAll();
-        return ResultInfo.returnMapReulst(data);
+        List<BlogTypePo> res = blogTypeService.queryAll();
+        return ResultInfo.returnMapReulst(res);
+    }
+
+    @ApiOperation(value = "获取所有分类(分页)",notes = "获取所有分类(分页)")
+    @GetMapping("/page/all")
+    public ResultInfo getAllWithPage(@RequestParam(name="currentPage") int currentPage,@RequestParam(name="pageSize")int pageSize){
+        PageInfo<BlogTypePo> pageInfo = blogTypeService.queryAllWithPage(currentPage, pageSize);
+        return  ResultInfo.page(pageInfo);
     }
 }

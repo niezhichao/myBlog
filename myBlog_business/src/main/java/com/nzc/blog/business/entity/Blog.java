@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.ibatis.type.Alias;
+
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,6 +18,7 @@ public class Blog extends BaseEntity {
     private  String tagId;
     private  String fileId;
     private  String ifOriginal;
+    private  List<TagPo> tags;
     private  String author;
     private  String articlesQuoted;
     private  String blogSortedId;

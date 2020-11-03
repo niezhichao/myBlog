@@ -16,12 +16,12 @@ public class BaseVo {
     /**
      * 分页大小
      */
-    private Integer pageSize;
+    private Integer pageSize = 10;
 
     /**
      * 页码
      */
-    private Integer pageNum;
+    private Integer pageNum = 0;
     /**
      * 唯一id
      */

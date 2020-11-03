@@ -2,6 +2,9 @@ package com.nzc.blog.business.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.nzc.blog.business.common.BusinessUtil;
+import com.nzc.blog.business.dao.RelationPoDao;
+import com.nzc.blog.business.entity.RelationPo;
 import com.nzc.blog.business.vo.BlogVo;
 import com.nzc.blog.business.dao.BlogDao;
 import com.nzc.blog.business.entity.Blog;
@@ -21,10 +24,14 @@ public class BlogServiceImpl implements IBlogService {
     @Autowired
     BlogDao blogDao;
 
+    @Autowired
+    RelationPoDao relationPoDao;
+
     @Transactional
     @Override
     public void insert(BlogVo blogVo) {
         blogVo.setCreateTime(new Date());
+        List<RelationPo> relationPoList = BusinessUtil.convertToRelationPoList(blogVo.getPid(),blogVo.getTags());
         String ifPublish = blogVo.getIfPublish();
         if (BlogCodeUtils.IFPUBLISHYES.equals(ifPublish)){
             blogVo.setPublicTime(new Date());
@@ -33,6 +40,7 @@ public class BlogServiceImpl implements IBlogService {
         Blog target = new Blog();
         BeanUtils.copyProperties(blogVo,target);
         blogDao.insertOne(target);
+        relationPoDao.insertList(relationPoList);
     }
 
     @Override
@@ -53,8 +61,7 @@ public class BlogServiceImpl implements IBlogService {
      * PageInfo或者Page对象可以取得分页信息
      */
     @Override
-    public PageInfo queryList(BlogVo blogVo) {
-
+    public PageInfo queryListWithPage(BlogVo blogVo) {
         PageHelper.startPage(blogVo.getPageNum(),blogVo.getPageSize());
         Blog target = new Blog();
         BeanUtils.copyProperties(blogVo,target);
@@ -64,7 +71,9 @@ public class BlogServiceImpl implements IBlogService {
     }
 
     @Override
-    public List queryAll() {
-        return null;
+    public PageInfo queryAllWithPage(int currentPage,int pageSize) {
+        PageHelper.startPage(currentPage,pageSize);
+        List<Blog> blogList = blogDao.queryAll();
+        return new PageInfo<>(blogList);
     }
 }

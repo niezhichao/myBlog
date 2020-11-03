@@ -1,5 +1,6 @@
 package com.nzc.blog.business.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.nzc.blog.business.dao.TagDao;
 import com.nzc.blog.business.entity.TagPo;
@@ -41,8 +42,19 @@ public class TagServiceImpl implements ITagService {
     }
 
     @Override
-    public PageInfo queryList(TagVo tagVo) {
-        return null;
+    public PageInfo queryListWithPage(TagVo tagVo) {
+        PageHelper.startPage(tagVo.getPageNum(),tagVo.getPageSize());
+        TagPo target = new TagPo();
+        BeanUtils.copyProperties(tagVo,target);
+        List<TagPo> tagList = tagDao.queryList(target);
+        return new PageInfo<>(tagList);
+    }
+
+    @Override
+    public PageInfo queryAllWithPage(int currentPage,int pageSize) {
+        PageHelper.startPage(currentPage,pageSize);
+        List<TagPo> tagPoList = tagDao.queryAll();
+        return new PageInfo<>(tagPoList);
     }
 
     @Override
