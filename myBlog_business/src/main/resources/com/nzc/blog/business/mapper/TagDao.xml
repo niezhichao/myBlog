@@ -52,5 +52,19 @@
             and tag_content like concat('%',#{tagContent},'%')
         </if>
     </select>
+
+    <update id="updateOne" parameterType="TagInfo">
+        update tag_info
+        <set>
+            <if test="tagContent !=null and tagContent != ''">
+                set tag_content = #{tagContent},
+            </if>
+
+            <if test="status !=null and status != ''">
+                set status = #{status},
+            </if>
+        </set>
+        where tag_id = #{pid}
+    </update>
 </mapper>
 
