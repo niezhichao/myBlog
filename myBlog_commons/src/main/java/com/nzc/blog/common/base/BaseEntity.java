@@ -15,7 +15,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BaseEntity implements Serializable {
+public class BaseEntity {
 
     /**
      * 唯一id

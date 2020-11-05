@@ -11,6 +11,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Api(value = "标签管理接口",tags = "TagRestApi")
@@ -28,10 +29,19 @@ public class TagController implements TagRestApi {
         tagService.insert(tagVo);
         return ResultInfo.ok();
     }
-
+    @ApiOperation(value = "更新标签",notes = "更新标签")
+    @PostMapping("/update")
     @Override
-    public ResultInfo update(TagVo tagVo) {
-        return null;
+    public ResultInfo update(@RequestBody TagVo tagVo) {
+        tagService.update(tagVo);
+        return ResultInfo.ok();
+    }
+
+    @ApiOperation(value = "删除标签",notes = "删除标签")
+    @PostMapping("/delete")
+    public ResultInfo deleteById(@RequestParam("id") Serializable id){
+        tagService.deleteById(id);
+        return ResultInfo.ok();
     }
 
     @Override

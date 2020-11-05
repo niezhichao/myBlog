@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -31,12 +32,12 @@ public class BlogServiceImpl implements IBlogService {
     @Override
     public void insert(BlogVo blogVo) {
         blogVo.setCreateTime(new Date());
+        blogVo.setPid(BlogUtil.generateId());
         List<RelationPo> relationPoList = BusinessUtil.convertToRelationPoList(blogVo.getPid(),blogVo.getTags());
         String ifPublish = blogVo.getIfPublish();
         if (BlogCodeUtils.IFPUBLISHYES.equals(ifPublish)){
             blogVo.setPublicTime(new Date());
         }
-        blogVo.setPid(BlogUtil.generateId());
         Blog target = new Blog();
         BeanUtils.copyProperties(blogVo,target);
         blogDao.insertOne(target);
@@ -50,6 +51,11 @@ public class BlogServiceImpl implements IBlogService {
 
     @Override
     public void delete(BlogVo blogVo) {
+
+    }
+
+    @Override
+    public void deleteById(Serializable id) {
 
     }
 

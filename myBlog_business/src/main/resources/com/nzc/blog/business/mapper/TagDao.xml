@@ -57,14 +57,18 @@
         update tag_info
         <set>
             <if test="tagContent !=null and tagContent != ''">
-                set tag_content = #{tagContent},
+                 tag_content = #{tagContent},
             </if>
 
             <if test="status !=null and status != ''">
-                set status = #{status},
+                 status = #{status},
             </if>
         </set>
         where tag_id = #{pid}
     </update>
+
+    <delete id="deleteTagById" parameterType="java.io.Serializable">
+        delete from tag_info where tag_id = #{id}
+    </delete>
 </mapper>
 

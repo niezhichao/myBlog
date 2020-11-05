@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.nzc.blog.business.dao.BlogDao">
-    <insert id="insertOne" parameterType="BlogInfo">
+    <insert id="insertOne" parameterType="Blog">
             insert into blog_info (
             blog_id,
             title,
@@ -38,7 +38,7 @@
             )
         </insert>
 
-    <select id="queryList" parameterType="BlogInfo" resultType="BlogInfo">
+    <select id="queryList" parameterType="Blog" resultType="Blog">
           select
           a.title as title,
           a.author as author,
@@ -56,7 +56,7 @@
            </if>
     </select>
 
-    <select id="queryAll" parameterType="BlogInfo" resultType="BlogInfo">
+    <select id="queryAll" parameterType="Blog" resultType="Blog">
          select
           a.title as title,
           a.author as author,

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Service
@@ -26,19 +27,28 @@ public class TagServiceImpl implements ITagService {
     public void insert(TagVo tagVo) {
         tagVo.setStatus(BlogCodeUtils.STATUS_VALID);
         tagVo.setPid(BlogUtil.generateId());
-        TagPo taget = new TagPo();
-        BeanUtils.copyProperties(tagVo,taget);
-        tagDao.insertOne(taget);
+        TagPo target = new TagPo();
+        BeanUtils.copyProperties(tagVo,target);
+        tagDao.insertOne(target);
     }
 
+    @Transactional
     @Override
     public void update(TagVo tagVo) {
-
+            TagPo po = new TagPo();
+            BeanUtils.copyProperties(tagVo,po);
+            tagDao.updateOne(po);
     }
 
+    @Transactional
     @Override
     public void delete(TagVo tagVo) {
 
+    }
+
+    @Override
+    public void deleteById(Serializable id) {
+        tagDao.deleteTagById(id);
     }
 
     @Override

@@ -3,7 +3,7 @@ package com.nzc.blog.business.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.nzc.blog.business.dao.BlogTypeDao;
-import com.nzc.blog.business.entity.BlogTypePo;
+import com.nzc.blog.business.entity.BlogType;
 import com.nzc.blog.business.service.IBlogTypeService;
 import com.nzc.blog.business.vo.BlogTypeVo;
 import com.nzc.blog.common.constant.BlogCodeUtils;
@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class BlogTypeServiceImpl implements IBlogTypeService{
         blogTypeVo.setCreateTime(new Date());
         blogTypeVo.setStatus(BlogCodeUtils.STATUS_VALID);
         blogTypeVo.setPid(BlogUtil.generateId());
-        BlogTypePo target = new BlogTypePo();
+        BlogType target = new BlogType();
         BeanUtils.copyProperties(blogTypeVo,target);
         blogTypeDao.insertOne(target);
     }
@@ -37,6 +38,9 @@ public class BlogTypeServiceImpl implements IBlogTypeService{
     @Override
     public void update(BlogTypeVo blogTypeVo) {
 
+        BlogType po = new BlogType();
+        BeanUtils.copyProperties(blogTypeVo,po);
+        blogTypeDao.updateOne(po);
     }
 
     @Transactional
@@ -46,24 +50,29 @@ public class BlogTypeServiceImpl implements IBlogTypeService{
     }
 
     @Override
+    public void deleteById(Serializable id) {
+        blogTypeDao.deleteBlogTypeById(id);
+    }
+
+    @Override
     public PageInfo queryListWithPage(BlogTypeVo blogTypeVo) {
         PageHelper.startPage(blogTypeVo.getPageNum(),blogTypeVo.getPageSize());
-        BlogTypePo target = new BlogTypePo();
+        BlogType target = new BlogType();
         BeanUtils.copyProperties(blogTypeVo,target);
-        List<BlogTypePo>  blogTypePos = blogTypeDao.queryList(target);
-        return new PageInfo<>(blogTypePos);
+        List<BlogType> blogTypes = blogTypeDao.queryList(target);
+        return new PageInfo<>(blogTypes);
     }
 
     @Override
     public PageInfo queryAllWithPage(int currentPage,int pageSize) {
         PageHelper.startPage(currentPage,pageSize);
-        List<BlogTypePo> blogTypePoList = blogTypeDao.queryAll();
-        return  new PageInfo<>(blogTypePoList);
+        List<BlogType> blogTypeList = blogTypeDao.queryAll();
+        return  new PageInfo<>(blogTypeList);
     }
 
 
     @Override
-    public List<BlogTypePo> queryAll() {
+    public List<BlogType> queryAll() {
         return blogTypeDao.queryAll();
     }
 }
