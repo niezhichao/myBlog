@@ -53,7 +53,7 @@ public class TagController implements TagRestApi {
     @GetMapping("/all")
     public ResultInfo getAll() {
         List<Tag> res = tagService.queryAll();
-        return ResultInfo.returnMapReulst(res);
+        return ResultInfo.response(res);
     }
 
     @ApiOperation(value = "获取所有标签(分页)",notes = "获取所有标签(分页)")

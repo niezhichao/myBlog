@@ -20,7 +20,6 @@ import java.util.Map;
 public class ResultInfo {
     private String resCode;
     private String resMsg;
-    private Map<String, Object> mapData = new HashMap<>();
     Object response;
     private PageData page;
 
@@ -62,9 +61,5 @@ public class ResultInfo {
 
     public static ResultInfo ok() {
         return new ResultInfo(ResultCode.SUCCESS);
-    }
-
-    public static ResultInfo returnMapReulst(Object data) {
-        return new ResultInfo(data);
     }
 }
