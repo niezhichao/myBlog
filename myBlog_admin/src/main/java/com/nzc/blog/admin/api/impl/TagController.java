@@ -2,9 +2,9 @@ package com.nzc.blog.admin.api.impl;
 
 import com.github.pagehelper.PageInfo;
 import com.nzc.blog.admin.api.TagRestApi;
+import com.nzc.blog.business.dto.TagDto;
 import com.nzc.blog.business.entity.Tag;
 import com.nzc.blog.business.service.ITagService;
-import com.nzc.blog.business.vo.TagVo;
 import com.nzc.blog.business.result.ResultInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -25,15 +25,15 @@ public class TagController implements TagRestApi {
     @ApiOperation(value = "添加标签",notes = "添加标签")
     @PostMapping("/add")
     @Override
-    public ResultInfo insert(@RequestBody TagVo tagVo) {
-        tagService.insert(tagVo);
+    public ResultInfo insert(@RequestBody TagDto tagDto) {
+        tagService.insert(tagDto);
         return ResultInfo.ok();
     }
     @ApiOperation(value = "更新标签",notes = "更新标签")
     @PostMapping("/update")
     @Override
-    public ResultInfo update(@RequestBody TagVo tagVo) {
-        tagService.update(tagVo);
+    public ResultInfo update(@RequestBody TagDto tagDto) {
+        tagService.update(tagDto);
         return ResultInfo.ok();
     }
 
@@ -45,7 +45,7 @@ public class TagController implements TagRestApi {
     }
 
     @Override
-    public ResultInfo delete(TagVo tagVo) {
+    public ResultInfo delete(TagDto tagDto) {
         return null;
     }
 

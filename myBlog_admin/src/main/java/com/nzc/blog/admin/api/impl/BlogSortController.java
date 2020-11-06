@@ -2,6 +2,7 @@ package com.nzc.blog.admin.api.impl;
 
 import com.github.pagehelper.PageInfo;
 import com.nzc.blog.admin.api.BlogSortRestApi;
+import com.nzc.blog.business.dto.BlogSortDto;
 import com.nzc.blog.business.entity.BlogSort;
 import com.nzc.blog.business.result.ResultInfo;
 import com.nzc.blog.business.service.IBlogSortService;
@@ -25,22 +26,17 @@ public class BlogSortController implements BlogSortRestApi {
     @ApiOperation(value = "添加分类",notes = "添加分类")
     @PostMapping("/add")
     @Override
-    public ResultInfo insert(@RequestBody BlogSortVo blogSortVo) {
-        blogSortService.insert(blogSortVo);
+    public ResultInfo insert(@RequestBody BlogSortDto blogSortDto) {
+        blogSortService.insert(blogSortDto);
         return ResultInfo.ok();
     }
 
     @ApiOperation(value = "更新分类信息",notes = "更新分类信息")
     @PostMapping("/update")
     @Override
-    public ResultInfo update(@RequestBody  BlogSortVo blogSortVo) {
-        blogSortService.update(blogSortVo);
+    public ResultInfo update(@RequestBody  BlogSortDto blogSortDto) {
+        blogSortService.update(blogSortDto);
         return ResultInfo.ok();
-    }
-
-    @Override
-    public ResultInfo delete(BlogSortVo blogSortVo) {
-        return null;
     }
 
     @ApiOperation(value = "删除分类",notes = "删除分类")
@@ -62,5 +58,10 @@ public class BlogSortController implements BlogSortRestApi {
     public ResultInfo getAllWithPage(@RequestParam(name="currentPage") int currentPage,@RequestParam(name="pageSize")int pageSize){
         PageInfo<BlogSort> pageInfo = blogSortService.queryAllWithPage(currentPage, pageSize);
         return  ResultInfo.page(pageInfo);
+    }
+
+    @Override
+    public ResultInfo delete(BlogSortDto blogSortDto) {
+        return null;
     }
 }

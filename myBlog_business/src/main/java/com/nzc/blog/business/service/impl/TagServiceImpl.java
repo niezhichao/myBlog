@@ -70,4 +70,6 @@ public class TagServiceImpl implements ITagService {
     public List<Tag> queryAll() {
         return tagDao.queryAll();
     }
+
+
 }
