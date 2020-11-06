@@ -3,8 +3,9 @@ package com.nzc.blog.business.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.nzc.blog.business.common.BusinessUtil;
-import com.nzc.blog.business.dao.RelationPoDao;
-import com.nzc.blog.business.entity.RelationPo;
+import com.nzc.blog.business.dao.RelationDao;
+import com.nzc.blog.business.dto.BlogDto;
+import com.nzc.blog.business.entity.Relation;
 import com.nzc.blog.business.vo.BlogVo;
 import com.nzc.blog.business.dao.BlogDao;
 import com.nzc.blog.business.entity.Blog;
@@ -26,31 +27,32 @@ public class BlogServiceImpl implements IBlogService {
     BlogDao blogDao;
 
     @Autowired
-    RelationPoDao relationPoDao;
+    RelationDao relationDao;
 
     @Transactional
     @Override
-    public void insert(BlogVo blogVo) {
-        blogVo.setCreateTime(new Date());
-        blogVo.setPid(BlogUtil.generateId());
-        List<RelationPo> relationPoList = BusinessUtil.convertToRelationPoList(blogVo.getPid(),blogVo.getTags());
-        String ifPublish = blogVo.getIfPublish();
+    public void insert(BlogDto blogDto) {
+        blogDto.setCreateTime(new Date());
+        blogDto.setPid(BlogUtil.generateId());
+        List<Relation> relationPoList = BusinessUtil.convertToRelationPoList(blogDto.getPid(),blogDto.getTags());
+        String ifPublish = blogDto.getIfPublish();
         if (BlogCodeUtils.IFPUBLISHYES.equals(ifPublish)){
-            blogVo.setPublicTime(new Date());
+            blogDto.setPublicTime(new Date());
         }
         Blog target = new Blog();
-        BeanUtils.copyProperties(blogVo,target);
+        BeanUtils.copyProperties(blogDto,target);
+        target.setBlogSortedId(blogDto.getBlogSort().getPid());
         blogDao.insertOne(target);
-        relationPoDao.insertList(relationPoList);
+        relationDao.insertList(relationPoList);
     }
 
     @Override
-    public void update(BlogVo blogVo) {
+    public void update(BlogDto blogDto) {
 
     }
 
     @Override
-    public void delete(BlogVo blogVo) {
+    public void delete(BlogDto blogDto) {
 
     }
 
@@ -61,16 +63,16 @@ public class BlogServiceImpl implements IBlogService {
 
     /**
      *
-     * @param blogVo
+     * @param blogDto
      * @return
      * PageHelper.startPage 方法后的第一个mapper方法 会进行分页
      * PageInfo或者Page对象可以取得分页信息
      */
     @Override
-    public PageInfo queryListWithPage(BlogVo blogVo) {
-        PageHelper.startPage(blogVo.getPageNum(),blogVo.getPageSize());
+    public PageInfo queryListWithPage(BlogDto blogDto) {
+        PageHelper.startPage(blogDto.getPageNum(),blogDto.getPageSize());
         Blog target = new Blog();
-        BeanUtils.copyProperties(blogVo,target);
+        BeanUtils.copyProperties(blogDto,target);
         List<Blog> blogList = blogDao.queryList(target);
         PageInfo<Blog> pageInfo = new PageInfo<>(blogList);
         return pageInfo;

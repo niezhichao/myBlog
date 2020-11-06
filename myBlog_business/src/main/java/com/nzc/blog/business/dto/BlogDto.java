@@ -1,8 +1,8 @@
-package com.nzc.blog.business.vo;
+package com.nzc.blog.business.dto;
 
 import com.nzc.blog.business.entity.BlogSort;
 import com.nzc.blog.business.entity.Tag;
-import com.nzc.blog.common.base.BaseVo;
+import com.nzc.blog.common.base.BaseDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,7 +13,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class BlogVo extends BaseVo {
+public class BlogDto extends BaseDto {
     private  String title;//标题
     private  String content;//内容
     private  String fileId;
@@ -37,5 +37,5 @@ public class BlogVo extends BaseVo {
     private Date publicTime;
     private Date updateTime;
     private Date createTime;
-    private List<Tag>  tags;
+    private List<Tag> tags;
 }

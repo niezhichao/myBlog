@@ -1,19 +1,18 @@
 package com.nzc.blog.common.base;
 
+
 import com.nzc.blog.common.page.PageInfo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.io.Serializable;
 
 /**
- * vo基类  后端到前端的数据传输
+ * dto基类  前端到后端的数据传输
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BaseVo extends PageInfo {
-
+public class BaseDto extends PageInfo {
     /**
      * 唯一id
      */

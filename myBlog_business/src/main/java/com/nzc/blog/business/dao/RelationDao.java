@@ -1,6 +1,6 @@
 package com.nzc.blog.business.dao;
 
-import com.nzc.blog.business.entity.Blog;
+import com.nzc.blog.business.entity.Relation;
 import com.nzc.blog.common.base.BaseDao;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
@@ -9,7 +9,6 @@ import java.util.List;
 
 @Mapper
 @Component
-public interface BlogDao extends BaseDao<Blog> {
-    List<Blog> queryList(Blog blog);
-    List<Blog> queryAll();
+public interface RelationDao extends BaseDao<Relation> {
+    void insertList(List<Relation> relationPoList);
 }

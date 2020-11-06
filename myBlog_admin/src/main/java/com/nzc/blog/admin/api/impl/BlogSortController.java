@@ -1,11 +1,11 @@
 package com.nzc.blog.admin.api.impl;
 
 import com.github.pagehelper.PageInfo;
-import com.nzc.blog.admin.api.BlogTypeRestApi;
-import com.nzc.blog.business.entity.BlogType;
-import com.nzc.blog.business.service.IBlogTypeService;
-import com.nzc.blog.business.vo.BlogTypeVo;
+import com.nzc.blog.admin.api.BlogSortRestApi;
+import com.nzc.blog.business.entity.BlogSort;
 import com.nzc.blog.business.result.ResultInfo;
+import com.nzc.blog.business.service.IBlogSortService;
+import com.nzc.blog.business.vo.BlogSortVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,50 +16,51 @@ import java.util.List;
 
 @Api(value = "分类管理接口",tags = "BlogTypeRestApi")
 @RestController
-@RequestMapping("blogType")
-public class BlogTypeController implements BlogTypeRestApi {
+@RequestMapping("blogSort")
+public class BlogSortController implements BlogSortRestApi {
 
     @Autowired
-    IBlogTypeService  blogTypeService;
+    IBlogSortService blogSortService;
 
     @ApiOperation(value = "添加分类",notes = "添加分类")
     @PostMapping("/add")
     @Override
-    public ResultInfo insert(@RequestBody BlogTypeVo blogTypeVo) {
-        blogTypeService.insert(blogTypeVo);
+    public ResultInfo insert(@RequestBody BlogSortVo blogSortVo) {
+        blogSortService.insert(blogSortVo);
         return ResultInfo.ok();
     }
+
     @ApiOperation(value = "更新分类信息",notes = "更新分类信息")
     @PostMapping("/update")
     @Override
-    public ResultInfo update(@RequestBody BlogTypeVo blogTypeVo) {
-        blogTypeService.update(blogTypeVo);
+    public ResultInfo update(@RequestBody  BlogSortVo blogSortVo) {
+        blogSortService.update(blogSortVo);
         return ResultInfo.ok();
     }
 
     @Override
-    public ResultInfo delete(BlogTypeVo blogTypeVo) {
+    public ResultInfo delete(BlogSortVo blogSortVo) {
         return null;
     }
 
     @ApiOperation(value = "删除分类",notes = "删除分类")
     @PostMapping("/delete")
     public ResultInfo deleteById(@RequestParam("id") Serializable id){
-        blogTypeService.deleteById(id);
+        blogSortService.deleteById(id);
         return ResultInfo.ok();
     }
 
     @ApiOperation(value = "获取所有分类",notes = "获取所有分类")
     @GetMapping("/all")
     public  ResultInfo getAll(){
-        List<BlogType> res = blogTypeService.queryAll();
-        return ResultInfo.returnMapReulst(res);
+        List<BlogSort> res = blogSortService.queryAll();
+        return ResultInfo.response(res);
     }
 
     @ApiOperation(value = "获取所有分类(分页)",notes = "获取所有分类(分页)")
     @GetMapping("/page/all")
     public ResultInfo getAllWithPage(@RequestParam(name="currentPage") int currentPage,@RequestParam(name="pageSize")int pageSize){
-        PageInfo<BlogType> pageInfo = blogTypeService.queryAllWithPage(currentPage, pageSize);
+        PageInfo<BlogSort> pageInfo = blogSortService.queryAllWithPage(currentPage, pageSize);
         return  ResultInfo.page(pageInfo);
     }
 }

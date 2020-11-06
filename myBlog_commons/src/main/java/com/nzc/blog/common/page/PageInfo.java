@@ -1,4 +1,4 @@
-package com.nzc.blog.business.result;
+package com.nzc.blog.common.page;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class PageCommon {
+public class PageInfo {
 
     private int pageNum;
     private int pageSize;

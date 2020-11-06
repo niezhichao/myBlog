@@ -2,10 +2,11 @@ package com.nzc.blog.business.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.nzc.blog.business.dao.BlogTypeDao;
-import com.nzc.blog.business.entity.BlogType;
-import com.nzc.blog.business.service.IBlogTypeService;
-import com.nzc.blog.business.vo.BlogTypeVo;
+import com.nzc.blog.business.dao.BlogSortDao;
+import com.nzc.blog.business.dto.BlogSortDto;
+import com.nzc.blog.business.entity.BlogSort;
+import com.nzc.blog.business.service.IBlogSortService;
+import com.nzc.blog.business.vo.BlogSortVo;
 import com.nzc.blog.common.constant.BlogCodeUtils;
 import com.nzc.blog.utils.BlogUtil;
 import org.springframework.beans.BeanUtils;
@@ -18,61 +19,57 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-public class BlogTypeServiceImpl implements IBlogTypeService{
+public class BlogSortServiceImpl implements IBlogSortService {
 
     @Autowired
-    BlogTypeDao blogTypeDao;
+    BlogSortDao blogSortDao;
 
     @Transactional
     @Override
-    public void insert(BlogTypeVo blogTypeVo) {
-        blogTypeVo.setCreateTime(new Date());
-        blogTypeVo.setStatus(BlogCodeUtils.STATUS_VALID);
-        blogTypeVo.setPid(BlogUtil.generateId());
-        BlogType target = new BlogType();
-        BeanUtils.copyProperties(blogTypeVo,target);
-        blogTypeDao.insertOne(target);
+    public void insert(BlogSortDto blogSortDto) {
+        blogSortDto.setStatus(BlogCodeUtils.STATUS_VALID);
+        blogSortDto.setPid(BlogUtil.generateId());
+        BlogSort target = new BlogSort();
+        BeanUtils.copyProperties(blogSortDto,target);
+        target.setCreateTime(new Date());
+        blogSortDao.insertOne(target);
     }
 
     @Transactional
     @Override
-    public void update(BlogTypeVo blogTypeVo) {
-
-        BlogType po = new BlogType();
-        BeanUtils.copyProperties(blogTypeVo,po);
-        blogTypeDao.updateOne(po);
+    public void update(BlogSortDto blogSortDto) {
+        BlogSort po = new BlogSort();
+        BeanUtils.copyProperties(blogSortDto,po);
+        blogSortDao.updateOne(po);
     }
 
     @Transactional
     @Override
-    public void delete(BlogTypeVo blogTypeVo) {
+    public void delete(BlogSortDto blogSortDto) {
 
     }
 
-    @Override
     public void deleteById(Serializable id) {
-        blogTypeDao.deleteBlogTypeById(id);
+        blogSortDao.deleteBlogTypeById(id);
     }
 
-    @Override
-    public PageInfo queryListWithPage(BlogTypeVo blogTypeVo) {
-        PageHelper.startPage(blogTypeVo.getPageNum(),blogTypeVo.getPageSize());
-        BlogType target = new BlogType();
-        BeanUtils.copyProperties(blogTypeVo,target);
-        List<BlogType> blogTypes = blogTypeDao.queryList(target);
+    public PageInfo queryListWithPage(BlogSortVo blogSortVo) {
+        PageHelper.startPage(blogSortVo.getPageNum(),blogSortVo.getPageSize());
+        BlogSort target = new BlogSort();
+        BeanUtils.copyProperties(blogSortVo,target);
+        List<BlogSort> blogTypes = blogSortDao.queryList(target);
         return new PageInfo<>(blogTypes);
     }
 
-    @Override
     public PageInfo queryAllWithPage(int currentPage,int pageSize) {
         PageHelper.startPage(currentPage,pageSize);
-        List<BlogType> blogTypeList = blogTypeDao.queryAll();
+        List<BlogSort> blogTypeList = blogSortDao.queryAll();
         return  new PageInfo<>(blogTypeList);
     }
 
 
     @Override
-    public List<BlogType> queryAll() {
-        return blogTypeDao.queryAll();
+    public List<BlogSort> queryAll() {
+        return blogSortDao.queryAll();
     }
 }

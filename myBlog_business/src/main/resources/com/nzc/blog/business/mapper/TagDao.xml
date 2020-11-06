@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.nzc.blog.business.dao.TagDao">
 
-    <insert id="insertOne" parameterType="TagInfo">
+    <insert id="insertOne" parameterType="Tag">
 
         insert into tag_info(
         tag_id,
@@ -23,7 +23,7 @@
         )
     </insert>
 
-    <select id="queryAll" resultType="TagInfo">
+    <select id="queryAll" resultType="Tag">
         select
         tag_id as pid,
         tag_content as tagContent,
@@ -34,7 +34,7 @@
         from tag_info
     </select>
 
-    <select id="queryList" parameterType="TagInfo" resultType="TagInfo">
+    <select id="queryList" parameterType="Tag" resultType="Tag">
         select
         tag_id as pid,
         tag_content as tagContent,
@@ -53,7 +53,7 @@
         </if>
     </select>
 
-    <update id="updateOne" parameterType="TagInfo">
+    <update id="updateOne" parameterType="Tag">
         update tag_info
         <set>
             <if test="tagContent !=null and tagContent != ''">

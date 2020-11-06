@@ -8,7 +8,6 @@
             blog_id,
             title,
             content,
-            tag_id,
             file_id,
             status,
             create_time,
@@ -23,7 +22,6 @@
             #{pid},
             #{title},
             #{content},
-            #{tagId},
             #{fileId},
             #{status},
             #{createTime},
@@ -56,14 +54,13 @@
            </if>
     </select>
 
-    <select id="queryAll" parameterType="Blog" resultType="Blog">
+    <select id="queryAll" parameterType="Blog" resultType="com.nzc.blog.business.vo.BlogVo">
          select
           a.title as title,
           a.author as author,
           a.create_time as createTime,
           a.update_time as updateTime,
           a.publish_time as publicTime,
-          a.blog_sort_id as blogSortedId,
           a.is_publish as ifPublish
           from blog_info a
     </select>

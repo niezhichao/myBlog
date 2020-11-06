@@ -1,6 +1,8 @@
-package com.nzc.blog.business.vo;
+package com.nzc.blog.business.dto;
 
-import com.nzc.blog.common.base.BaseVo;
+import com.nzc.blog.business.vo.TagVo;
+import com.nzc.blog.common.base.BaseDto;
+import com.nzc.blog.common.page.PageInfo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,8 +12,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class BlogSortVo extends BaseVo {
-
+public class BlogSortDto extends BaseDto {
     /**
      * 类型名称
      */
@@ -23,7 +24,7 @@ public class BlogSortVo extends BaseVo {
 
     private List<TagVo> tags;
 
-    public BlogSortVo(int pageNum, int pageSize){
+    public BlogSortDto(int pageNum, int pageSize){
         this.setPageNum(pageNum);
         this.setPageSize(pageSize);
     }

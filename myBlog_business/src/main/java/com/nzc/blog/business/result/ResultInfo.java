@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -20,6 +21,7 @@ public class ResultInfo {
     private String resCode;
     private String resMsg;
     private Map<String, Object> mapData = new HashMap<>();
+    Object response;
     private PageData page;
 
     public ResultInfo(String resCode, String resMsg) {
@@ -32,10 +34,13 @@ public class ResultInfo {
         this.page = page;
     }
 
+    public static  ResultInfo response(Object data){
+        return new ResultInfo(data);
+    }
 
     public ResultInfo(Object data) {
         this(ResultCode.SUCCESS);
-        this.mapData.put("data", data);
+        this.response = data;
     }
 
     public static <T> ResultInfo page(PageData<T> page) {

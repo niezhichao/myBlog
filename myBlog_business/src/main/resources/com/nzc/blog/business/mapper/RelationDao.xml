@@ -2,8 +2,8 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.nzc.blog.business.dao.RelationPoDao">
-    <insert id="insertOne" parameterType="RelationPo">
+<mapper namespace="com.nzc.blog.business.dao.RelationDao">
+    <insert id="insertOne" parameterType="Relation">
             insert into relationType (
             pid,
             mainRelationKey,
@@ -21,7 +21,7 @@
             )
         </insert>
 
-        <insert id="insertList" parameterType="RelationPo">
+        <insert id="insertList" parameterType="Relation">
             insert into relationType (
             pid,
             mainRelationKey,
@@ -42,7 +42,7 @@
             </foreach>
         </insert>
 
-        <select id="queryList" parameterType="RelationPo" resultType="RelationPo">
+        <select id="queryList" parameterType="Relation" resultType="Relation">
                 select
                 pid as pid,
                 mainRelationKey as mainRelationKey,

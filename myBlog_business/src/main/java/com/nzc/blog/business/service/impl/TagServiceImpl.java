@@ -3,7 +3,8 @@ package com.nzc.blog.business.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.nzc.blog.business.dao.TagDao;
-import com.nzc.blog.business.entity.TagPo;
+import com.nzc.blog.business.dto.TagDto;
+import com.nzc.blog.business.entity.Tag;
 import com.nzc.blog.business.service.ITagService;
 import com.nzc.blog.business.vo.TagVo;
 import com.nzc.blog.common.constant.BlogCodeUtils;
@@ -24,51 +25,49 @@ public class TagServiceImpl implements ITagService {
 
     @Transactional
     @Override
-    public void insert(TagVo tagVo) {
-        tagVo.setStatus(BlogCodeUtils.STATUS_VALID);
-        tagVo.setPid(BlogUtil.generateId());
-        TagPo target = new TagPo();
-        BeanUtils.copyProperties(tagVo,target);
+    public void insert(TagDto tagDto) {
+        tagDto.setStatus(BlogCodeUtils.STATUS_VALID);
+        tagDto.setPid(BlogUtil.generateId());
+        Tag target = new Tag();
+        BeanUtils.copyProperties(tagDto,target);
         tagDao.insertOne(target);
     }
 
     @Transactional
     @Override
-    public void update(TagVo tagVo) {
-            TagPo po = new TagPo();
-            BeanUtils.copyProperties(tagVo,po);
+    public void update(TagDto tagDto) {
+            Tag po = new Tag();
+            BeanUtils.copyProperties(tagDto,po);
             tagDao.updateOne(po);
     }
 
     @Transactional
     @Override
-    public void delete(TagVo tagVo) {
+    public void delete(TagDto tagDto) {
 
     }
 
-    @Override
+
     public void deleteById(Serializable id) {
         tagDao.deleteTagById(id);
     }
 
-    @Override
+
     public PageInfo queryListWithPage(TagVo tagVo) {
         PageHelper.startPage(tagVo.getPageNum(),tagVo.getPageSize());
-        TagPo target = new TagPo();
+        Tag target = new Tag();
         BeanUtils.copyProperties(tagVo,target);
-        List<TagPo> tagList = tagDao.queryList(target);
+        List<Tag> tagList = tagDao.queryList(target);
         return new PageInfo<>(tagList);
     }
 
-    @Override
     public PageInfo queryAllWithPage(int currentPage,int pageSize) {
         PageHelper.startPage(currentPage,pageSize);
-        List<TagPo> tagPoList = tagDao.queryAll();
+        List<Tag> tagPoList = tagDao.queryAll();
         return new PageInfo<>(tagPoList);
     }
 
-    @Override
-    public List<TagPo> queryAll() {
+    public List<Tag> queryAll() {
         return tagDao.queryAll();
     }
 }
