@@ -10,7 +10,7 @@
             relationTypeCode,
             relatedKey,
             create_time,
-            status
+              status
             ) values (
             #{pid},
             #{mainRelationKey},

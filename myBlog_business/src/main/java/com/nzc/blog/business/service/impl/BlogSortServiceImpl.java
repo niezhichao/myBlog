@@ -53,10 +53,10 @@ public class BlogSortServiceImpl implements IBlogSortService {
         blogSortDao.deleteBlogTypeById(id);
     }
 
-    public PageInfo queryListWithPage(BlogSortVo blogSortVo) {
-        PageHelper.startPage(blogSortVo.getPageNum(),blogSortVo.getPageSize());
+    public PageInfo queryListWithPage(BlogSortDto blogSortDto) {
+        PageHelper.startPage(blogSortDto.getPageNum(),blogSortDto.getPageSize());
         BlogSort target = new BlogSort();
-        BeanUtils.copyProperties(blogSortVo,target);
+        BeanUtils.copyProperties(blogSortDto,target);
         List<BlogSort> blogTypes = blogSortDao.queryList(target);
         return new PageInfo<>(blogTypes);
     }

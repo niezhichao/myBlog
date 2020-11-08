@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BaseVo extends PageInfo {
+public class BaseVo {
 
     /**
      * 唯一id

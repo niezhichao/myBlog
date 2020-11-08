@@ -53,10 +53,10 @@ public class TagServiceImpl implements ITagService {
     }
 
 
-    public PageInfo queryListWithPage(TagVo tagVo) {
-        PageHelper.startPage(tagVo.getPageNum(),tagVo.getPageSize());
+    public PageInfo queryListWithPage(TagDto tagDto) {
+        PageHelper.startPage(tagDto.getPageNum(),tagDto.getPageSize());
         Tag target = new Tag();
-        BeanUtils.copyProperties(tagVo,target);
+        BeanUtils.copyProperties(tagDto,target);
         List<Tag> tagList = tagDao.queryList(target);
         return new PageInfo<>(tagList);
     }

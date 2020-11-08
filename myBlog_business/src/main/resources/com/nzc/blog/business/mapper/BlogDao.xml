@@ -3,6 +3,32 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.nzc.blog.business.dao.BlogDao">
+
+    <resultMap id="blogVoResultMap" type="com.nzc.blog.business.vo.BlogVo">
+        <id property="pid" column="blog_pid"/>
+        <result property="title" column="blog_title"/>
+        <result property="content" column="blog_content"/>
+        <result property="status" column="blog_status"/>
+        <result property="fileId" column="blog_fileId"/>
+        <result property="ifOriginal" column="blog_ifOriginal"/>
+        <result property="author" column="blog_author"/>
+        <result property="articlesQuoted" column="blog_articlesQuoted"/>
+       <!-- <result property="blogSortedId" column="blog_blogSortedId"/>-->
+        <result property="ifPublish" column="blog_ifPublish"/>
+        <result property="createTime" column="blog_createTime"/>
+        <result property="updateTime" column="blog_updateTime"/>
+        <result property="publicTime" column="blog_publicTime"/>
+        <association property="blogSort" javaType="com.nzc.blog.business.entity.BlogSort">
+            <id property="pid" column="blogSort_pid"/>
+            <result property="typeName" column="blogSort_typeName"/>
+            <result property="content" column="blogSort_content"/>
+        </association>
+        <collection property="tags" ofType="com.nzc.blog.business.entity.Tag">
+            <id property="pid" column="tags_pid"/>
+            <result property="tagContent" column="tags_tagContent"/>
+        </collection>
+    </resultMap>
+
     <insert id="insertOne" parameterType="Blog">
             insert into blog_info (
             blog_id,
@@ -36,22 +62,39 @@
             )
         </insert>
 
-    <select id="queryList" parameterType="Blog" resultType="Blog">
-          select
-          a.title as title,
-          a.author as author,
-          a.create_time as createTime,
-          a.update_time as updateTime,
-          a.publish_time as publicTime,
-          a.blog_sort_id as blogSortedId,
-          a.is_publish as ifPublish
-          from blog_info a where 1=1
-          <if test="title != null and title !=''">
-                  and title like concat('%',#{title} ,'%')
-          </if>
-           <if test="blogSortedId != null and  blogSortedId !=''">
-                  and a.blog_sort_id = #{blogSortedId}
-           </if>
+    <select id="queryList" parameterType="Blog" resultMap="blogVoResultMap">
+        select
+        a.blog_id as blog_pid,
+        a.title as blog_title,
+        a.content as blog_content,
+        a.author as blog_author,
+        a.create_time as blog_createTime,
+        a.update_time as blog_updateTime,
+        a.publish_time as blog_publicTime,
+        a.is_publish as blog_ifPublish,
+        a.status as blog_status,
+        a.file_id as blog_fileId,
+        a.is_original as blog_ifOriginal,
+        a.articles_part as blog_articlesQuoted,
+        b.blog_type_id as blogSort_pid,
+        b.type_name as blogSort_typeName,
+        b.content as blog_sort_content,
+        d.tag_id as tags_pid,
+        d.tag_content as tags_tagContent
+        from blog_info a
+        left join blog_type b on a.blog_sort_id = b.blog_type_id
+        left join relationType c on a.blog_id = c.mainRelationKey
+        left join tag_info d on c.relatedKey = d.tag_id
+        where 1=1 and c.relationTypeCode = '01'
+        <if test="title != null and title !=''">
+            and a.title like concat('%',#{title} ,'%')
+        </if>
+        <if test="pid != null and pid !=''">
+            and a.blog_id = #{pid}
+        </if>
+        <if test="blogSortedId != null and  blogSortedId !=''">
+            and a.blog_sort_id = #{blogSortedId}
+        </if>
     </select>
 
     <select id="queryAll" parameterType="Blog" resultType="com.nzc.blog.business.vo.BlogVo">

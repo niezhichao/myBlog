@@ -22,9 +22,4 @@ public class BlogSortVo extends BaseVo {
     private String content;
 
     private List<TagVo> tags;
-
-    public BlogSortVo(int pageNum, int pageSize){
-        this.setPageNum(pageNum);
-        this.setPageSize(pageSize);
-    }
 }
