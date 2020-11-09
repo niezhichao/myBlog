@@ -10,6 +10,7 @@ import com.nzc.blog.business.vo.BlogVo;
 import com.nzc.blog.business.dao.BlogDao;
 import com.nzc.blog.business.entity.Blog;
 import com.nzc.blog.business.service.IBlogService;
+import com.nzc.blog.common.base.BaseVo;
 import com.nzc.blog.common.constant.BlogCodeUtils;
 import com.nzc.blog.utils.BlogUtil;
 import org.springframework.beans.BeanUtils;
@@ -73,8 +74,8 @@ public class BlogServiceImpl implements IBlogService {
         PageHelper.startPage(blogDto.getPageNum(),blogDto.getPageSize());
         Blog target = new Blog();
         BeanUtils.copyProperties(blogDto,target);
-        List<Blog> blogList = blogDao.queryList(target);
-        PageInfo<Blog> pageInfo = new PageInfo<>(blogList);
+        List<BlogVo> blogList = blogDao.queryList(target);
+        PageInfo<BlogVo> pageInfo = new PageInfo<>(blogList);
         return pageInfo;
     }
 

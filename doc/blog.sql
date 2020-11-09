@@ -46,3 +46,13 @@ CREATE TABLE `blog_type` (
   `sort` int(11) DEFAULT '0' COMMENT '排序字段，越大越靠前',
   PRIMARY KEY (`blog_type_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='博客分类表';
+
+CREATE TABLE `relationtype` (
+  `mainRelationKey` varchar(32) NOT NULL,
+  `relationTypeCode` varchar(5) NOT NULL,
+  `relatedKey` varchar(32) NOT NULL,
+  `pid` varchar(32) NOT NULL,
+  `create_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `status` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`pid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

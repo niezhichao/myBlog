@@ -1,5 +1,6 @@
 package com.nzc.blog.business.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.nzc.blog.business.entity.BlogSort;
 import com.nzc.blog.business.entity.Tag;
 import com.nzc.blog.common.base.BaseVo;
@@ -34,8 +35,11 @@ public class BlogVo extends BaseVo {
     /**
      * 发布时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date publicTime;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
     private List<Tag>  tags;
 }

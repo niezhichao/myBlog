@@ -5,9 +5,6 @@ import com.nzc.blog.common.constant.ResultCode;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * created on 2020/09/23

@@ -13,7 +13,6 @@
         <result property="ifOriginal" column="blog_ifOriginal"/>
         <result property="author" column="blog_author"/>
         <result property="articlesQuoted" column="blog_articlesQuoted"/>
-       <!-- <result property="blogSortedId" column="blog_blogSortedId"/>-->
         <result property="ifPublish" column="blog_ifPublish"/>
         <result property="createTime" column="blog_createTime"/>
         <result property="updateTime" column="blog_updateTime"/>
@@ -23,10 +22,7 @@
             <result property="typeName" column="blogSort_typeName"/>
             <result property="content" column="blogSort_content"/>
         </association>
-        <collection property="tags" ofType="com.nzc.blog.business.entity.Tag">
-            <id property="pid" column="tags_pid"/>
-            <result property="tagContent" column="tags_tagContent"/>
-        </collection>
+        <collection property="tags" column="blog_pid" ofType="com.nzc.blog.business.entity.Tag" select="queryTagsById" />
     </resultMap>
 
     <insert id="insertOne" parameterType="Blog">
@@ -78,14 +74,9 @@
         a.articles_part as blog_articlesQuoted,
         b.blog_type_id as blogSort_pid,
         b.type_name as blogSort_typeName,
-        b.content as blog_sort_content,
-        d.tag_id as tags_pid,
-        d.tag_content as tags_tagContent
+        b.content as blog_sort_content
         from blog_info a
-        left join blog_type b on a.blog_sort_id = b.blog_type_id
-        left join relationType c on a.blog_id = c.mainRelationKey
-        left join tag_info d on c.relatedKey = d.tag_id
-        where 1=1 and c.relationTypeCode = '01'
+        left join blog_type b on a.blog_sort_id = b.blog_type_id where 1=1
         <if test="title != null and title !=''">
             and a.title like concat('%',#{title} ,'%')
         </if>
@@ -95,6 +86,14 @@
         <if test="blogSortedId != null and  blogSortedId !=''">
             and a.blog_sort_id = #{blogSortedId}
         </if>
+    </select>
+
+    <select id="queryTagsById" resultType="Tag">
+        select d.tag_id as tags_pid,
+        d.tag_content as tags_tagContent,
+        c.mainRelationKey as mainRelationKey
+        from tag_info d left join relationType c on d.tag_id = c.relatedKey
+        where c.relationTypeCode='01' and c.mainRelationKey = #{blog_pid}
     </select>
 
     <select id="queryAll" parameterType="Blog" resultType="com.nzc.blog.business.vo.BlogVo">
