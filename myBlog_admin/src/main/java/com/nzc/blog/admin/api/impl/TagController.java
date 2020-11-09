@@ -45,6 +45,11 @@ public class TagController implements TagRestApi {
     }
 
     @Override
+    public ResultInfo deleteByIds(List<Serializable> ids) {
+        return null;
+    }
+
+    @Override
     public ResultInfo delete(TagDto tagDto) {
         return null;
     }

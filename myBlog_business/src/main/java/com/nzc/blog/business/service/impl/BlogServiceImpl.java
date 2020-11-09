@@ -58,8 +58,13 @@ public class BlogServiceImpl implements IBlogService {
     }
 
     @Override
-    public void deleteById(Serializable id) {
+    public void deleteByIds(List<Serializable> ids) {
+        blogDao.deleteByIds(ids);
+    }
 
+    @Override
+    public void deleteById(Serializable id) {
+        blogDao.deleteById(id);
     }
 
     /**
@@ -74,6 +79,9 @@ public class BlogServiceImpl implements IBlogService {
         PageHelper.startPage(blogDto.getPageNum(),blogDto.getPageSize());
         Blog target = new Blog();
         BeanUtils.copyProperties(blogDto,target);
+        if (null != blogDto.getBlogSort()){
+            target.setBlogSortedId(blogDto.getBlogSort().getPid());
+        }
         List<BlogVo> blogList = blogDao.queryList(target);
         PageInfo<BlogVo> pageInfo = new PageInfo<>(blogList);
         return pageInfo;

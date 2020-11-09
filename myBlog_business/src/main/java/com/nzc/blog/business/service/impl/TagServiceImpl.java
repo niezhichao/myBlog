@@ -52,6 +52,10 @@ public class TagServiceImpl implements ITagService {
         tagDao.deleteTagById(id);
     }
 
+    @Override
+    public void deleteByIds(List<Serializable> ids) {
+
+    }
 
     public PageInfo queryListWithPage(TagDto tagDto) {
         PageHelper.startPage(tagDto.getPageNum(),tagDto.getPageSize());

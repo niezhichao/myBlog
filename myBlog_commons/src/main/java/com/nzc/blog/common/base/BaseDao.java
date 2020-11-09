@@ -11,4 +11,5 @@ public interface BaseDao<T> {
     void insertOne(T t);
     void updateOne(T t);
     void deleteOne(T t);
+    void deleteByIds(List<Serializable> ids);
 }

@@ -11,6 +11,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Api(value = "博客管理相关接口",tags = "BlogRestApi")
@@ -45,6 +46,13 @@ public class BlogController implements BlogRestApi {
         return null;
     }
 
+    @ApiOperation(value = "批量删除博客",notes = "批量删除博客")
+    @PostMapping("/delete/list")
+    @Override
+    public ResultInfo deleteByIds(@RequestParam(name="ids") List<Serializable> ids) {
+        blogService.deleteByIds(ids);
+        return ResultInfo.ok();
+    }
 
     @ApiOperation(value = "获取博客列表",notes = "获取博客列表")
     @PostMapping("/list")

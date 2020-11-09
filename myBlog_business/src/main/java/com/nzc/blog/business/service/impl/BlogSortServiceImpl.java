@@ -49,6 +49,11 @@ public class BlogSortServiceImpl implements IBlogSortService {
 
     }
 
+    @Override
+    public void deleteByIds(List<Serializable> ids) {
+
+    }
+
     public void deleteById(Serializable id) {
         blogSortDao.deleteBlogTypeById(id);
     }

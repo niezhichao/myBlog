@@ -46,6 +46,11 @@ public class BlogSortController implements BlogSortRestApi {
         return ResultInfo.ok();
     }
 
+    @Override
+    public ResultInfo deleteByIds(List<Serializable> ids) {
+        return null;
+    }
+
     @ApiOperation(value = "获取所有分类",notes = "获取所有分类")
     @GetMapping("/all")
     public  ResultInfo getAll(){
