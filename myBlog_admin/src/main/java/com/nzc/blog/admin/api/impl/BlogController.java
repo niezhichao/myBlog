@@ -36,6 +36,7 @@ public class BlogController implements BlogRestApi {
         return ResultInfo.ok();
     }
 
+
     @Override
     public ResultInfo update(BlogDto blogDto) {
         return null;
@@ -44,6 +45,13 @@ public class BlogController implements BlogRestApi {
     @Override
     public ResultInfo delete(BlogDto blogDto) {
         return null;
+    }
+
+    @ApiOperation(value = "删除博客",notes = "删除博客")
+    @PostMapping("/delete/one")
+    public ResultInfo deleteById(@RequestParam("id") Serializable id){
+        blogService.deleteById(id);
+        return ResultInfo.ok();
     }
 
     @ApiOperation(value = "批量删除博客",notes = "批量删除博客")

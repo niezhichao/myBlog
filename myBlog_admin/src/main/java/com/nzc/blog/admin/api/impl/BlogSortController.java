@@ -6,7 +6,6 @@ import com.nzc.blog.business.dto.BlogSortDto;
 import com.nzc.blog.business.entity.BlogSort;
 import com.nzc.blog.business.result.ResultInfo;
 import com.nzc.blog.business.service.IBlogSortService;
-import com.nzc.blog.business.vo.BlogSortVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
