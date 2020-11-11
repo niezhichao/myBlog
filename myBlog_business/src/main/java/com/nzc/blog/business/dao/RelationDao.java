@@ -11,4 +11,5 @@ import java.util.List;
 @Component
 public interface RelationDao extends BaseDao<Relation> {
     void insertList(List<Relation> relationPoList);
+    void mergeInto(List<Relation> relationPoList);
 }

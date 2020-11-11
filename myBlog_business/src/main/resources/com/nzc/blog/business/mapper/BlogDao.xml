@@ -22,7 +22,7 @@
             <result property="typeName" column="blogSort_typeName"/>
             <result property="content" column="blogSort_content"/>
         </association>
-        <collection property="tags" column="blog_pid" ofType="com.nzc.blog.business.entity.Tag" select="queryTagsById" />
+        <collection property="tags" column="blog_pid" ofType="com.nzc.blog.business.entity.Tag" select="queryTagsById"/>
     </resultMap>
 
     <insert id="insertOne" parameterType="Blog">
@@ -114,9 +114,51 @@
     <select id="deleteByIds">
         delete from blog_info
         where blog_id in
-        <foreach collection="list" item="id"  open="(" separator="," close=")">
+        <foreach collection="list" item="id" open="(" separator="," close=")">
             #{id}
         </foreach>
     </select>
+
+    <update id="updateOne" parameterType="Blog">
+        update blog_info
+        <set>
+            <if test="title != null and title != ''">
+                title = #{title},
+            </if>
+            <if test="content != null and content != ''">
+                content = #{content},
+            </if>
+            <if test="fileId != null and fileId != ''">
+                file_id = #{fileId},
+            </if>
+            <if test="ifOriginal != null and ifOriginal != ''">
+                is_original = #{ifOriginal},
+            </if>
+            <if test="author != null and author != ''">
+                author = #{author},
+            </if>
+
+            <if test="articlesQuoted != null and articlesQuoted != ''">
+                articles_part = #{articlesQuoted},
+            </if>
+
+            <if test="ifPublish != null and ifPublish != ''">
+                is_publish = #{ifPublish},
+            </if>
+
+            <if test="status != null and status  != ''">
+                status = #{status},
+            </if>
+
+            <if test=" != null and  != ''">
+                title = #{title},
+            </if>
+
+            <if test=" != null and  != ''">
+                title = #{title},
+            </if>
+        </set>
+        where blog_id = #{pid}
+    </update>
 </mapper>
 

@@ -42,6 +42,34 @@
             </foreach>
         </insert>
 
+
+        <insert id="mergeInto" parameterType="Relation">
+            insert into relationType (
+            pid,
+            mainRelationKey,
+            relationTypeCode,
+            relatedKey,
+            create_time,
+            status
+            ) values
+            <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.pid},
+            #{item.mainRelationKey},
+            #{item.relationTypeCode},
+            #{item.relatedKey},
+            #{item.createTime},
+            #{item.status}
+            )
+            on duplicate key update
+            pid=values(pid),
+            mainRelationKey=values(mainRelationKey),
+            relationTypeCode=values(relationTypeCode),
+            relatedKey=values(relatedKey),
+            create_time=values(create_time),
+            status=values(status)
+        </insert>
+
         <select id="queryList" parameterType="Relation" resultType="Relation">
                 select
                 pid as pid,

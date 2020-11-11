@@ -6,6 +6,7 @@ import com.nzc.blog.business.dto.BlogDto;
 import com.nzc.blog.business.entity.Blog;
 import com.nzc.blog.business.result.ResultInfo;
 import com.nzc.blog.business.service.IBlogService;
+import com.nzc.blog.business.vo.BlogVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,7 +66,7 @@ public class BlogController implements BlogRestApi {
     @ApiOperation(value = "获取博客列表",notes = "获取博客列表")
     @PostMapping("/list")
     public ResultInfo getBlogList(@RequestBody BlogDto blogDto){
-        PageInfo<List<Blog>> pageInfo = blogService.queryListWithPage(blogDto);
+        PageInfo<BlogVo> pageInfo = blogService.queryListWithPage(blogDto);
         return ResultInfo.page(pageInfo);
     }
 }
