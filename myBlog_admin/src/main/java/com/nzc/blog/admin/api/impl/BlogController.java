@@ -37,10 +37,12 @@ public class BlogController implements BlogRestApi {
         return ResultInfo.ok();
     }
 
-
+    @ApiOperation(value = "更新博客",notes = "更新博客")
+    @PostMapping("/update")
     @Override
-    public ResultInfo update(BlogDto blogDto) {
-        return null;
+    public ResultInfo update(@RequestBody(required = false) BlogDto blogDto) {
+        blogService.update(blogDto);
+        return ResultInfo.ok();
     }
 
     @Override

@@ -46,13 +46,19 @@ public class BlogServiceImpl implements IBlogService {
         relationDao.insertList(relationPoList);
     }
 
+    @Transactional
     @Override
     public void update(BlogDto blogDto) {
         blogDto.setUpdateTime(new Date());
-        List<Relation> relationPoList = BusinessUtil.convertToRelationPoList(blogDto.getPid(),blogDto.getTags());
+        relationDao.deleteByMainRelationKey(blogDto.getPid());
+        if (null != blogDto.getTags()){
+            List<Relation> relationPoList = BusinessUtil.convertToRelationPoList(blogDto.getPid(),blogDto.getTags());
+            relationDao.mergeInto(relationPoList);
+        }
         Blog target = new Blog();
         BeanUtils.copyProperties(blogDto,target);
         target.setBlogSortedId(blogDto.getBlogSort().getPid());
+        blogDao.updateOne(target);
     }
 
     @Override

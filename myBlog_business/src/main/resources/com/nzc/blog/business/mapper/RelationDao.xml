@@ -61,6 +61,7 @@
             #{item.createTime},
             #{item.status}
             )
+            </foreach>
             on duplicate key update
             pid=values(pid),
             mainRelationKey=values(mainRelationKey),
@@ -92,5 +93,10 @@
                         and relatedKey = #{relatedKey}
                 </if>
         </select>
+
+    <delete id="deleteByMainRelationKey">
+        delete  from relationType
+        where mainRelationKey=#{mainRelationKey}
+    </delete>
 </mapper>
 

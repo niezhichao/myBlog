@@ -1,11 +1,13 @@
 package com.nzc.blog.business.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.nzc.blog.business.entity.BlogSort;
 import com.nzc.blog.business.entity.Tag;
 import com.nzc.blog.common.base.BaseDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 import java.util.List;
@@ -34,8 +36,14 @@ public class BlogDto extends BaseDto {
     /**
      * 发布时间
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date publicTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
     private List<Tag> tags;
 }

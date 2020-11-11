@@ -150,12 +150,8 @@
                 status = #{status},
             </if>
 
-            <if test=" != null and  != ''">
-                title = #{title},
-            </if>
-
-            <if test=" != null and  != ''">
-                title = #{title},
+            <if test="updateTime != null">
+                update_time = #{updateTime},
             </if>
         </set>
         where blog_id = #{pid}
