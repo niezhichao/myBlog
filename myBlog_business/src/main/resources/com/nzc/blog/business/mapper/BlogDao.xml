@@ -142,6 +142,10 @@
                 articles_part = #{articlesQuoted},
             </if>
 
+            <if test="blogSortedId != null and blogSortedId != ''">
+                blog_sort_id = #{blogSortedId},
+            </if>
+
             <if test="ifPublish != null and ifPublish != ''">
                 is_publish = #{ifPublish},
             </if>
