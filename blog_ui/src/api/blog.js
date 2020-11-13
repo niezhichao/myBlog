@@ -44,3 +44,12 @@ export function updateBlog(param) {
     data: param
   })
 }
+
+export function getBlogContentById(param) {
+
+  return request({
+    url: process.env.GATEWAY_API + 'admin-api/blog/content',
+    method: "post",
+    params: param
+  })
+}

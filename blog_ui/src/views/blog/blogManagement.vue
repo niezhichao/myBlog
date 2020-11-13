@@ -85,7 +85,7 @@
               <template slot-scope="scope">
                 <el-button @click="deleteRow(scope.row)" size="mini" icon="el-icon-delete" type="danger">删除</el-button>
                 <el-button @click="editRow(scope.row)" size="mini" icon="el-icon-edit" type="warning">编辑</el-button>
-                <el-button size="mini" icon="el-icon-view" type="primary" disabled>预览</el-button>
+                <el-button  @click="blogPreview(scope.row.pid)" size="mini" icon="el-icon-view" type="primary" >预览</el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -107,6 +107,8 @@
         </template>
       </el-footer>
     </el-container>
+
+    <!------------------------------------ 编辑博客dislog-------------------------------------->
 
     <el-dialog
       title="编辑博客"
@@ -233,12 +235,28 @@
     <el-button type="primary" @click="editDataCommit">确 定</el-button>
   </span>
     </el-dialog>
+
+
+    <!------------------------------------ 博客预览dislog-------------------------------------->
+    <el-dialog
+      title="博客预览"
+      :visible.sync="blogContentPreviewVisible"
+      width="800px"
+    >
+      <div
+        class="blogContentDiv"
+        v-html="blogContent"
+      >
+        {{blogContent}}
+      </div>
+
+    </el-dialog>
   </div>
 </template>
 
 <script>
   import pageHeader from "../../components/pageHeader";
-  import {getBlogLst, delBlogLst, delBlogById,updateBlog} from "../../api/blog";
+  import {getBlogLst, delBlogLst, delBlogById,updateBlog,getBlogContentById} from "../../api/blog";
   import {getBlogSortList} from "../../api/blogSort";
   import {getTagList} from "../../api/tag";
   import CKEditor from "../../components/CKEditor";
@@ -250,6 +268,7 @@
       return {
         disabledChange:true,
         editBlogDialogVisible: false,
+        blogContentPreviewVisible:false,
         editBlogData: {
           blogSort:{}
         },
@@ -258,6 +277,7 @@
         blogSortList: [],
         headerText: "文章管理|",
         blogList: [],
+        blogContent:"",
         artTags:[],
         blogQuery: {
           title: "",
@@ -273,6 +293,22 @@
       }
     },
     methods: {
+      blogPreview(val){//预览
+        this.blogContentPreviewVisible = true;
+        let param = {
+          id:val
+        }
+        getBlogContentById(param).then(res => {
+          if (res.data.resCode == "00") {
+            this.blogContent = res.data.response;
+          }
+        }).catch(error => {
+          this.$message({
+            type: "error",
+            message: error
+          })
+        });
+      },
       eiditorChange(val){//子组件通知内容改变
         this.editBlogData.content= this.$refs.ckeditor.getData();
       },
@@ -500,5 +536,9 @@
 
   .mainRow {
     margin-top: 20px;
+  }
+
+  .blogContentDiv{
+
   }
 </style>

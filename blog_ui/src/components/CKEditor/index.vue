@@ -11,7 +11,7 @@
 </template>
 
 <script>
-  import CKEditor from '@ckeditor/ckeditor5-build-decoupled-document'
+  import CKEditor from '@ckeditor/ckeditor5-build-decoupled-document';
     export default {
       props:["content"],
         data(){
