@@ -107,9 +107,13 @@
           from blog_info a
     </select>
 
-    <select id="deleteById" parameterType="java.io.Serializable">
-        delete from blog_info where blog_id = #{id}
+    <select id="getBlogContentById" parameterType="java.io.Serializable" resultType="java.lang.String">
+        select  content from blog_info where blog_id = #{id}
     </select>
+
+    <delete id="deleteById" parameterType="java.io.Serializable">
+        delete from blog_info where blog_id = #{id}
+    </delete>
 
     <select id="deleteByIds">
         delete from blog_info

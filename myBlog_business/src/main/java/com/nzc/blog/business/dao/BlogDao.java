@@ -16,4 +16,5 @@ public interface BlogDao extends BaseDao<Blog> {
     List<BlogVo> queryList(Blog blog);
     List<Blog> queryAll();
     void deleteById(@Param("id") Serializable id);
+    String getBlogContentById(@Param("id") Serializable id);
 }

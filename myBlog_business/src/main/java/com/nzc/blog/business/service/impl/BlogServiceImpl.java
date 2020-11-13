@@ -102,4 +102,9 @@ public class BlogServiceImpl implements IBlogService {
         List<Blog> blogList = blogDao.queryAll();
         return new PageInfo<>(blogList);
     }
+
+    @Override
+    public String getBlogContentById(Serializable id) {
+        return blogDao.getBlogContentById(id);
+    }
 }

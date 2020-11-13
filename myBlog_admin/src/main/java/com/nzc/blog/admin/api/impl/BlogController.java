@@ -71,4 +71,12 @@ public class BlogController implements BlogRestApi {
         PageInfo<BlogVo> pageInfo = blogService.queryListWithPage(blogDto);
         return ResultInfo.page(pageInfo);
     }
+
+    @ApiOperation(value = "博客预览",notes = "博客预览")
+    @PostMapping("/content")
+    @Override
+    public ResultInfo getBlogContentById(@RequestParam("id") Serializable id) {
+        String blogCnt = blogService.getBlogContentById(id);
+        return ResultInfo.response(blogCnt);
+    }
 }

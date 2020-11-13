@@ -11,5 +11,5 @@ public interface IBlogService extends BaseService<BlogDto> {
     void deleteById(Serializable id);
     PageInfo queryListWithPage(BlogDto blogDto);
     PageInfo queryAllWithPage(int currentPage,int pageSize);
-
+    String   getBlogContentById(Serializable id);
 }
