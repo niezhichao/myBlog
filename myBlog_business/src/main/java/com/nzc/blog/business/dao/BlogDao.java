@@ -6,6 +6,7 @@ import com.nzc.blog.common.base.BaseDao;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.io.Serializable;
 import java.util.List;
