@@ -69,7 +69,7 @@
         </el-row>
 
         <el-row>
-          <CKEditor ref="ckeditor"></CKEditor>
+          <ckEditor ref="ckeditor"></ckEditor>
         </el-row>
         <el-row>
           <el-col :span="6" :offset="18">
@@ -82,7 +82,8 @@
 </template>
 
 <script>
-  import CKEditor from "../../components/CKEditor";
+  /*import CKEditor from "../../components/CKEditor";*/
+  import ckEditor from "../../components/CKEditor/ckEditor";
   import {addBlog} from "../../api/blog";
   import {getBlogSortList} from "../../api/blogSort";
   import {getTagList} from "../../api/tag";
@@ -90,7 +91,7 @@
   export default {
         name: "blogcreated",
       components:{
-        CKEditor,
+        ckEditor,
         pageHeader
       },
       data(){

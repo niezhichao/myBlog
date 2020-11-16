@@ -17,6 +17,7 @@
     <module>myBlog_utils</module>
     <module>myBlog_config</module>
     <module>myBlog_business</module>
+      <module>myblog_file</module>
   </modules>
 
   <parent>
