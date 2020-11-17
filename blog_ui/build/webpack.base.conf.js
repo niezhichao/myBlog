@@ -15,6 +15,9 @@ module.exports = {
   entry: {
     app: './src/main.js'
   },
+  externals: {
+    "CKEDITOR": "window.CKEDITOR"
+  },
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',

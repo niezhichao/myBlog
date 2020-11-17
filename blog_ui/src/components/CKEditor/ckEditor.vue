@@ -1,17 +1,11 @@
 <template>
   <div class="app-container">
-
-    <!-- 工具栏容器 -->
-    <div id="toolbar-container"></div>
-
-    <!-- 编辑器容器 -->
-    <div id="editor" ref="editor">
-    </div>
+    <textarea id="editor" rows="10" cols="80"></textarea>
   </div>
 </template>
 
 <script>
-  /*import DecoupledEditor from '@ckeditor/ckeditor5-editor-decoupled/src/decouplededitor';*/
+  import CKEDITOR from 'CKEDITOR';
   export default {
       name:"ckEditor",
       data(){
@@ -21,30 +15,16 @@
       },
         methods:{
           initEditor(){
-            /*DecoupledEditor.create(document.querySelector( '#editor'),{
-              toolbar:{
-                items:[
-                  "heading",
-                  "|",
-                  "bold",
-                  "italic",
-                  "link",
-                  "bulletedList",
-                  "numberedList",
-                  "imageUpload",
-                  "blockQuote",
-                  "insertTable",
-                  "mediaEmbed"
-                ]
-              }
-            }).then(
-              editor =>{
-                this.editor = editor;
-                console.log(Array.from( editor.ui.componentFactory.names() ));
-              }
-            ).catch(error=>{
-              console.log(error);
-            })*/
+            CKEDITOR.replace('editor',{
+              language:"en",
+              height: this.height,
+              width: '100%',
+              toolbar: 'toolbar_Full',
+              extraPlugins: 'codesnippet',
+              codeSnippet_theme: 'zenburn'
+            });
+            this.editor = CKEDITOR.instances.editor;
+            this.editor.setData(this.content); //初始化内容
           }
         },
       mounted(){

@@ -82,7 +82,7 @@
 </template>
 
 <script>
-  /*import CKEditor from "../../components/CKEditor";*/
+ /* import CKEditor from "../../components/CKEditor";*/
   import ckEditor from "../../components/CKEditor/ckEditor";
   import {addBlog} from "../../api/blog";
   import {getBlogSortList} from "../../api/blogSort";
