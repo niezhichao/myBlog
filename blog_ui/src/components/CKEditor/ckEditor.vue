@@ -11,9 +11,7 @@
 </template>
 
 <script>
-  import CKEditor from '@ckeditor/ckeditor5-build-decoupled-document';
-  import CodeBlock from '@ckeditor/ckeditor5-code-block/src/codeblock';
-
+  /*import DecoupledEditor from '@ckeditor/ckeditor5-editor-decoupled/src/decouplededitor';*/
   export default {
       name:"ckEditor",
       data(){
@@ -23,8 +21,7 @@
       },
         methods:{
           initEditor(){
-            CKEditor.create(document.querySelector( '#editor'),{
-              plugins:[CodeBlock],
+            /*DecoupledEditor.create(document.querySelector( '#editor'),{
               toolbar:{
                 items:[
                   "heading",
@@ -37,19 +34,17 @@
                   "imageUpload",
                   "blockQuote",
                   "insertTable",
-                  "mediaEmbed",
-                  "codeBlock"
+                  "mediaEmbed"
                 ]
               }
             }).then(
               editor =>{
                 this.editor = editor;
-                const toolbarContainer = document.querySelector( '#toolbar-container');
-                toolbarContainer.appendChild( editor.ui.view.toolbar.element);
+                console.log(Array.from( editor.ui.componentFactory.names() ));
               }
             ).catch(error=>{
               console.log(error);
-            })
+            })*/
           }
         },
       mounted(){

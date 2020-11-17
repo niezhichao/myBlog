@@ -11,7 +11,7 @@
 </template>
 
 <script>
-  import CKEditor from '@ckeditor/ckeditor5-build-decoupled-document';
+  // import CKEditor from '@ckeditor/ckeditor5-editor-decoupled';
     export default {
       props:["content"],
         data(){
@@ -24,7 +24,7 @@
       },
       methods:{
         initCKEditor() {
-          CKEditor.create(document.querySelector('#editor'), {
+          /*CKEditor.create(document.querySelector('#editor'), {
             ckfinder: {
               uploadUrl: 'C:\\Users\\niezhichao\\Desktop\\temp'
             }
@@ -42,7 +42,7 @@
             });
           }).catch(error => {
             console.error(error);
-          });
+          });*/
 
         },
         getData: function () {
