@@ -1,19 +1,13 @@
 <template>
   <div class="app-container">
-
-    <!-- 工具栏容器 -->
-    <div id="toolbar-container"></div>
-
-    <!-- 编辑器容器 -->
-    <div id="editor">
-    </div>
+    <textarea id="editor" rows="10" cols="80"></textarea>
   </div>
 </template>
 
 <script>
-  // import CKEditor from '@ckeditor/ckeditor5-editor-decoupled';
+  import CKEDITOR from 'CKEDITOR';
     export default {
-      props:["content"],
+      props:["content","height"],
         data(){
           return {
             editor: null,
@@ -22,41 +16,37 @@
       mounted(){
         this.initCKEditor();
       },
+      watch:{
+        content(){
+          this.setData(this.content);
+        }
+      },
       methods:{
         initCKEditor() {
-          /*CKEditor.create(document.querySelector('#editor'), {
-            ckfinder: {
-              uploadUrl: 'C:\\Users\\niezhichao\\Desktop\\temp'
-            }
-          }).then(editor => {
-            const toolbarContainer = document.querySelector('#toolbar-container');
-            toolbarContainer.appendChild(editor.ui.view.toolbar.element);
-            this.editor = editor //将编辑器保存起来，用来随时获取编辑器中的内容等，执行一些操作
-            if (this.content != "" && this.content != null && this.content!=undefined){
-              this.editor.setData(this.content);
-            }
-            var that = this;
-            // 监听内容改变 通知父组件
-            this.editor.model.document.on('change:data', function(v,v1) {
-             that.contentChange();
-            });
-          }).catch(error => {
-            console.error(error);
+          var that = this;
+          CKEDITOR.replace('editor',{
+            language:"en",
+            height: this.height,
+            width: '100%',
+            toolbar: 'toolbar_Full',
+            extraPlugins: 'codesnippet',
+            codeSnippet_theme: 'zenburn'
+          });
+          this.editor = CKEDITOR.instances.editor;
+          this.editor.setData(this.content); //初始化内容
+          /*that.editor.on('change', function( event ) {
+              that.contentChange();
           });*/
-
         },
-        getData: function () {
+        getData: function() {
            return this.editor.getData();
         },
-        setData:function (val) {
+        setData:function(val) {
           this.editor.setData(val);
         },
         contentChange(){
           this.$emit("content-change","");
         }
-      },
-      watch:{
-
       }
     }
 </script>

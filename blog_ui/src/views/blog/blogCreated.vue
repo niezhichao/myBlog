@@ -1,8 +1,8 @@
 <template>
     <div class="blogCreatedWrapper">
-          <page-header :headerText="headerText"></page-header>
+          <page-header :headerText="headerText" class="row-margin"></page-header>
       <el-form>
-        <el-row :gutter="20">
+        <el-row :gutter="20" class="row-margin">
             <el-col :span="10">
               <el-input v-model="blogInfo.title">
                 <template slot="prepend">
@@ -69,8 +69,9 @@
         </el-row>
 
         <el-row>
-          <ckEditor ref="ckeditor"></ckEditor>
+          <CKEditor ref="ckeditor" :height="330"></CKEditor>
         </el-row>
+
         <el-row>
           <el-col :span="6" :offset="18">
             <el-button @click="draftArticle">草稿</el-button>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -82,8 +83,7 @@
 </template>
 
 <script>
- /* import CKEditor from "../../components/CKEditor";*/
-  import ckEditor from "../../components/CKEditor/ckEditor";
+ import CKEditor from "../../components/CKEditor";
   import {addBlog} from "../../api/blog";
   import {getBlogSortList} from "../../api/blogSort";
   import {getTagList} from "../../api/tag";
@@ -91,7 +91,7 @@
   export default {
         name: "blogcreated",
       components:{
-        ckEditor,
+        CKEditor,
         pageHeader
       },
       data(){
@@ -205,13 +205,13 @@
 <style scoped>
  .blogCreatedWrapper{
    margin-top: 20px;
-   height: 570px;
+   height: 700px;
    border-bottom: 1px solid #d9ecff;
    background-color: rgba(193,226,161,0.25);
    box-shadow: 5px 5px 3px 0 rgba(0, 0, 0, .12), 0 0 3px 0 rgba(0, 0, 0, .04);
  }
 
-  .el-row{
+  .row-margin{
     margin-bottom:10px;
   }
 

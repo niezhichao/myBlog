@@ -11,10 +11,25 @@ import '@/styles/index.scss'
 import '@/icons' // icon
 import store from './store'
 import commCodeUtils from './utils/commCodeUtils';
+
+//引入highlight.js
+import hljs from 'highlight.js';
+import 'highlight.js/styles/atom-one-dark.css'	//样式
 Vue.config.productionTip = false
 
 Vue.use(Element);
 Vue.use(commCodeUtils);
+
+/**
+ * 自定义指令
+ * 指令写在new Vue之前
+ */
+Vue.directive('highlight',function (el) {
+  let blocks = el.querySelectorAll('pre code');
+  blocks.forEach((block)=>{
+    hljs.highlightBlock(block)
+  })
+})
 
 new Vue({
   el: '#app',
