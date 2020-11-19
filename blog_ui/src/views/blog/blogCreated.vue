@@ -176,7 +176,6 @@
 
           /*获取博客类型列表*/
         getBlogSortList().then(response =>{
-
           if (response.data.resCode == "00") {
             this.blogTypes = response.data.response;
           }

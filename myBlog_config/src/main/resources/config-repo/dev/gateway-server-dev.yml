@@ -3,3 +3,6 @@ zuul:
     admin-api:
       path: /admin-api/**
       serviceId: admin-api
+    file-api:
+      path: /file-api/**
+      serviceId: file-server

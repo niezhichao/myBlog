@@ -59,4 +59,8 @@ public class ResultInfo {
     public static ResultInfo ok() {
         return new ResultInfo(ResultCode.SUCCESS);
     }
+
+    public static ResultInfo response(ResultCode resultCode){
+        return new ResultInfo(resultCode);
+    }
 }

@@ -30,7 +30,12 @@
             width: '100%',
             toolbar: 'toolbar_Full',
             extraPlugins: 'codesnippet',
-            codeSnippet_theme: 'zenburn'
+            codeSnippet_theme: 'zenburn',
+            image_previewText:"",
+            filebrowserImageUploadUrl: process.env.GATEWAY_API + 'file-api/file/upload1',
+            filebrowserUploadUrl: "",
+            pasteUploadFileApi: ""
+
           });
           this.editor = CKEDITOR.instances.editor;
           this.editor.setData(this.content); //初始化内容
