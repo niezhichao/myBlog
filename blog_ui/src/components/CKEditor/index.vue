@@ -28,22 +28,11 @@
             language:"en",
             height: this.height,
             width: '100%',
+            extraPlugins: 'easyimage',
             toolbar: 'toolbar_Full',
-            extraPlugins: 'codesnippet',
             codeSnippet_theme: 'zenburn',
             image_previewText:"",
-            pasteUploadFileApi: "",
-
-            extraAllowedContent: 'h3{clear};h2{line-height};h2 h3{margin-left,margin-top}',
-
-            uploadUrl: process.env.GATEWAY_API + 'file-api/file/upload1'+'?command=QuickUpload&type=Files&responseType=json',
-
-            // Configure your file manager integration. This example uses CKFinder 3 for PHP.
-            filebrowserBrowseUrl: '/apps/ckfinder/3.4.5/ckfinder.html',
-            filebrowserImageBrowseUrl: '/apps/ckfinder/3.4.5/ckfinder.html?type=Images',
-           filebrowserUploadUrl: process.env.GATEWAY_API + 'file-api/file/upload1'+'?command=QuickUpload&type=Files',
-            filebrowserImageUploadUrl: process.env.GATEWAY_API + 'file-api/file/upload1'+'?command=QuickUpload&type=Images',
-            removeDialogTabs: 'image:advanced;link:advanced'
+            cloudServices_uploadUrl: process.env.GATEWAY_API +'file/upload1'
           });
           this.editor = CKEDITOR.instances.editor;
           this.editor.setData(this.content); //初始化内容
