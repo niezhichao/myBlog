@@ -12,6 +12,10 @@ import '@/icons' // icon
 import store from './store'
 import commCodeUtils from './utils/commCodeUtils';
 
+import CKEditor from 'ckeditor4-vue';
+
+Vue.use( CKEditor );
+
 //引入highlight.js
 import hljs from 'highlight.js';
 import 'highlight.js/styles/atom-one-dark.css'	//样式

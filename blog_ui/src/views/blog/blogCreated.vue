@@ -69,7 +69,7 @@
         </el-row>
 
         <el-row>
-          <CKEditor ref="ckeditor" :height="330"></CKEditor>
+          <CKEditor ref="ckeditor" height="340px"></CKEditor>
         </el-row>
 
         <el-row>

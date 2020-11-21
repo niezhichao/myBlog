@@ -229,7 +229,7 @@
           <CKEditor ref="ckeditor" height="300" @content-change="eiditorChange"  :content="editBlogData.content"></CKEditor>
         </el-row>
         <el-row>
-          <el-col :span="6" offset="10">
+          <el-col :span="6" :offset="10">
             <el-button @click="editBlogDialogVisible = false">关闭</el-button>
             <el-button type="primary" @click="editDataCommit">确 定</el-button>
           </el-col>
@@ -381,7 +381,6 @@
           temp.blogSort={};
         }
         this.editBlogData = temp;
-        /*this.$refs.ckeditor.setData(temp.content);*/
       },
       deleteRow(row) {
         var param = {

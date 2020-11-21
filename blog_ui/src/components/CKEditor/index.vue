@@ -1,63 +1,59 @@
 <template>
   <div class="app-container">
-    <textarea id="editor" rows="10" cols="80"></textarea>
+    <ckeditor id="editor"  v-model="editorData" :config="editorConfig"></ckeditor>
   </div>
 </template>
 
 <script>
-  import CKEDITOR from 'CKEDITOR';
     export default {
       props:["content","height"],
         data(){
           return {
             editor: null,
+            editorData:"",
+            editorConfig:{
+              extraPlugins:"uploadimage",
+              uploadUrl: process.env.GATEWAY_API+'file/upload1',
+              language:"en",
+              height :this.height,
+              toolbarGroups:[
+                { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
+                { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
+                { name: 'links', groups: [ 'links' ] },
+                { name: 'insert', groups: [ 'insert' ] },
+                { name: 'forms', groups: [ 'forms' ] },
+                { name: 'tools', groups: [ 'tools' ] },
+                { name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
+                { name: 'others', groups: [ 'others' ] },
+                '/',
+                { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+                { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
+                { name: 'styles', groups: [ 'styles' ] },
+                { name: 'colors', groups: [ 'colors' ] },
+                { name: 'about', groups: [ 'about' ] }
+              ]
+            }
           }
         },
       mounted(){
-        this.initCKEditor();
+
       },
-      watch:{
-        content(){
-          this.setData(this.content);
+      watch: {
+        content() {
+          this.editorData = this.content;
         }
       },
       methods:{
-        initCKEditor() {
-          var that = this;
-          CKEDITOR.replace('editor',{
-            language:"en",
-            height: this.height,
-            width: '100%',
-            extraPlugins: 'easyimage',
-            toolbar: 'toolbar_Full',
-            codeSnippet_theme: 'zenburn',
-            image_previewText:"",
-            cloudServices_uploadUrl: process.env.GATEWAY_API +'file/upload1'
-          });
-          this.editor = CKEDITOR.instances.editor;
-          this.editor.setData(this.content); //初始化内容
-          /*that.editor.on('change', function( event ) {
-              that.contentChange();
-          });*/
-        },
         getData: function() {
-           return this.editor.getData();
+          return this.editorData;
         },
         setData:function(val) {
-          this.editor.setData(val);
+          this.editorData = val;
         },
-        contentChange(){
-          this.$emit("content-change","");
         }
-      }
     }
 </script>
 
 <style scoped>
 
-  #editor{
-    background-color: white;
-    height: 245px;
-    border: solid 1px;
-  }
 </style>
