@@ -164,5 +164,17 @@
         </set>
         where blog_id = #{pid}
     </update>
+    
+    <select id="getCarousalBlog" parameterType="java.lang.Integer" resultType="Blog">
+         select content,title from blog_info where 1=1 order by  publish_time desc
+         <choose>
+             <when test="len != null">
+                  limit #{len}
+             </when>
+             <otherwise>
+                  limit 5
+             </otherwise>
+         </choose>
+    </select>
 </mapper>
 

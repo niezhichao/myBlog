@@ -66,10 +66,25 @@
                <el-radio size="mini"  v-model="blogInfo.ifOriginal" @change="redioChange"  label="1" >原创</el-radio>
                <el-radio size="mini"  v-model="blogInfo.ifOriginal"  label="0" @change="redioChange" >转载</el-radio>
           </el-col>
+
+        </el-row>
+
+        <el-row style="margin-top: 10px">
+          <el-col :span="24">
+            <el-upload
+            class="uploadFile"
+            ref="upload"
+            :action="uploadUrl"
+
+            >
+              <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
+              <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</el-button>
+            </el-upload>
+          </el-col>
         </el-row>
 
         <el-row>
-          <CKEditor ref="ckeditor" height="340px"></CKEditor>
+          <CKEditor ref="ckeditor" height="310px"></CKEditor>
         </el-row>
 
         <el-row>
@@ -98,6 +113,7 @@
           return {
             headerText: "文章发布|",
             disabledChange:true,
+            uploadUrl:process.env.GATEWAY_API+'file-api/file/upload1',
             blogInfo:{
               ifOriginal:"1",
               title: null,
@@ -114,6 +130,9 @@
           }
       },
       methods:{
+        submitUpload(){
+
+        },
         redioChange(val){
           if ("1" == val){
             this.disabledChange = true;

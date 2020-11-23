@@ -53,3 +53,13 @@ export function getBlogContentById(param) {
     params: param
   })
 }
+
+
+export function getCarousalBlog(param) {
+
+  return request({
+    url: process.env.GATEWAY_API + 'admin-api/blog/carousal',
+    method: "post",
+    params: param
+  })
+}

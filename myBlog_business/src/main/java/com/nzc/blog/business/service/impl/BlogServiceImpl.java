@@ -6,6 +6,7 @@ import com.nzc.blog.business.common.BusinessUtil;
 import com.nzc.blog.business.dao.RelationDao;
 import com.nzc.blog.business.dto.BlogDto;
 import com.nzc.blog.business.entity.Relation;
+import com.nzc.blog.business.entity.Tag;
 import com.nzc.blog.business.vo.BlogVo;
 import com.nzc.blog.business.dao.BlogDao;
 import com.nzc.blog.business.entity.Blog;
@@ -34,7 +35,12 @@ public class BlogServiceImpl implements IBlogService {
     public void insert(BlogDto blogDto) {
         blogDto.setCreateTime(new Date());
         blogDto.setPid(BlogUtil.generateId());
-        List<Relation> relationPoList = BusinessUtil.convertToRelationPoList(blogDto.getPid(),blogDto.getTags());
+        List<Tag> tags = blogDto.getTags();
+        if (null != tags && tags.size()>0){
+            List<Relation> relationPoList = BusinessUtil.convertToRelationPoList(blogDto.getPid(),blogDto.getTags());
+            relationDao.insertList(relationPoList);
+        }
+
         String ifPublish = blogDto.getIfPublish();
         if (BlogCodeUtils.IFPUBLISHYES.equals(ifPublish)){
             blogDto.setPublicTime(new Date());
@@ -43,7 +49,6 @@ public class BlogServiceImpl implements IBlogService {
         BeanUtils.copyProperties(blogDto,target);
         target.setBlogSortedId(blogDto.getBlogSort().getPid());
         blogDao.insertOne(target);
-        relationDao.insertList(relationPoList);
     }
 
     @Transactional
@@ -101,6 +106,16 @@ public class BlogServiceImpl implements IBlogService {
         PageHelper.startPage(currentPage,pageSize);
         List<Blog> blogList = blogDao.queryAll();
         return new PageInfo<>(blogList);
+    }
+
+    /**
+     * 获取首页轮播
+     * @param len 博客首页轮播条数
+     * @return
+     */
+    @Override
+    public List<Blog> getCarousalBlog(Integer len) {
+        return blogDao.getCarousalBlog(len);
     }
 
     @Override

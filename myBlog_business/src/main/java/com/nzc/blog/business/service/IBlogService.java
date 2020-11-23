@@ -2,9 +2,11 @@ package com.nzc.blog.business.service;
 
 import com.github.pagehelper.PageInfo;
 import com.nzc.blog.business.dto.BlogDto;
+import com.nzc.blog.business.entity.Blog;
 import com.nzc.blog.common.base.BaseService;
 
 import java.io.Serializable;
+import java.util.List;
 
 public interface IBlogService extends BaseService<BlogDto> {
 
@@ -12,4 +14,5 @@ public interface IBlogService extends BaseService<BlogDto> {
     PageInfo queryListWithPage(BlogDto blogDto);
     PageInfo queryAllWithPage(int currentPage,int pageSize);
     String   getBlogContentById(Serializable id);
+    List<Blog> getCarousalBlog(Integer len);
 }

@@ -79,4 +79,10 @@ public class BlogController implements BlogRestApi {
         String blogCnt = blogService.getBlogContentById(id);
         return ResultInfo.response(blogCnt);
     }
+
+    @ApiOperation(value = "首页轮播",notes = "首页轮播")
+    @PostMapping("/carousal")
+    public ResultInfo getCarousalBlog(@RequestParam("len") Integer len){
+        return  ResultInfo.response(blogService.getCarousalBlog(len));
+    }
 }
