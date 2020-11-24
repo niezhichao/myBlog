@@ -73,12 +73,16 @@
           <el-col :span="24">
             <el-upload
             class="uploadFile"
+            multiple
             ref="upload"
+            :auto-upload="false"
             :action="uploadUrl"
-
+            :on-success="uploadResponse"
+            :on-remove="fileRemove"
             >
               <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
               <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</el-button>
+              <div slot="tip" class="el-upload__tip">相关材料上传</div>
             </el-upload>
           </el-col>
         </el-row>
@@ -113,7 +117,7 @@
           return {
             headerText: "文章发布|",
             disabledChange:true,
-            uploadUrl:process.env.GATEWAY_API+'file-api/file/upload1',
+            uploadUrl:process.env.GATEWAY_API+'file-api/file/upload',
             blogInfo:{
               ifOriginal:"1",
               title: null,
@@ -131,6 +135,12 @@
       },
       methods:{
         submitUpload(){
+          this.$refs.upload.submit();
+        },
+        uploadResponse(response, file, fileList){
+
+        },
+        fileRemove(file, fileList){
 
         },
         redioChange(val){

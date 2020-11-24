@@ -1,5 +1,7 @@
 package com.nzc.blog.common.constant;
 
+import sun.security.krb5.internal.PAForUserEnc;
+
 public class BlogCodeUtils {
 
     /**
@@ -16,4 +18,6 @@ public class BlogCodeUtils {
      */
     public static final String  STATUS_INVALID = "0";
     public static final String  STATUS_VALID = "1";
+
+    public static final String FILE_PATH_BASE ="E:/blogFile";
 }

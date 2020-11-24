@@ -7,9 +7,16 @@ spring:
           service-id: myBlog-config
           enabled: true
         profile: dev
+  mvc:
+    async:
+      request-timeout: 20s
 eureka:
   client:
     serviceUrl:
       register-with-eureka: true
       fetch-registry: true
       defaultZone: http://localhost:8761/eureka/
+
+zuul:
+  host:
+    connection-request-timeout-millis: 20000
