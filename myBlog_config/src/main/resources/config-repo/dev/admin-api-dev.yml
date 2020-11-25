@@ -6,8 +6,8 @@ spring:
      password: 123456
      type: com.alibaba.druid.pool.DruidDataSource
 mybatis:
-  mapper-locations: classpath:/com/nzc/blog/business/mapper/*.xml
-  type-aliases-package: com.nzc.blog.business.entity
+  mapper-locations: classpath:/com/nzc/blog/mapper/*.xml
+  type-aliases-package: com.nzc.blog.admin.entity
 
 #
 # reasonable: 分页合理化参数，默认值为false。当该参数设置为 true 时，

@@ -2,11 +2,10 @@ package com.nzc.blog.admin.api.impl;
 
 import com.github.pagehelper.PageInfo;
 import com.nzc.blog.admin.api.BlogRestApi;
-import com.nzc.blog.business.dto.BlogDto;
-import com.nzc.blog.business.entity.Blog;
-import com.nzc.blog.business.result.ResultInfo;
-import com.nzc.blog.business.service.IBlogService;
-import com.nzc.blog.business.vo.BlogVo;
+import com.nzc.blog.admin.dto.BlogDto;
+import com.nzc.blog.common.result.ResultInfo;
+import com.nzc.blog.admin.service.IBlogService;
+import com.nzc.blog.admin.vo.BlogVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,12 +1,11 @@
 package com.nzc.blog.file.api.impl;
 
-import com.nzc.blog.business.result.ResultInfo;
-import com.nzc.blog.business.service.IFileOperService;
+import com.nzc.blog.common.result.ResultInfo;
 import com.nzc.blog.common.constant.ResultCode;
 import com.nzc.blog.file.api.FileRestApi;
+import com.nzc.blog.file.service.IFileOperService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.web.servlet.MultipartProperties;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

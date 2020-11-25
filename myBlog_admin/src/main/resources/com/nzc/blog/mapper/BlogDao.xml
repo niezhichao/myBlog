@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nzc.blog.admin.dao.BlogDao">
+
+    <resultMap id="blogVoResultMap" type="com.nzc.blog.admin.vo.BlogVo">
+        <id property="pid" column="blog_pid"/>
+        <result property="title" column="blog_title"/>
+        <result property="content" column="blog_content"/>
+        <result property="status" column="blog_status"/>
+        <result property="fileId" column="blog_fileId"/>
+        <result property="ifOriginal" column="blog_ifOriginal"/>
+        <result property="author" column="blog_author"/>
+        <result property="articlesQuoted" column="blog_articlesQuoted"/>
+        <result property="ifPublish" column="blog_ifPublish"/>
+        <result property="createTime" column="blog_createTime"/>
+        <result property="updateTime" column="blog_updateTime"/>
+        <result property="publicTime" column="blog_publicTime"/>
+        <association property="blogSort" javaType="com.nzc.blog.admin.entity.BlogSort">
+            <id property="pid" column="blogSort_pid"/>
+            <result property="typeName" column="blogSort_typeName"/>
+            <result property="content" column="blogSort_content"/>
+        </association>
+        <collection property="tags" column="blog_pid" ofType="com.nzc.blog.admin.entity.Tag" select="queryTagsById"/>
+    </resultMap>
+
+    <insert id="insertOne" parameterType="Blog">
+            insert into blog_info (
+            blog_id,
+            title,
+            content,
+            file_id,
+            status,
+            create_time,
+            update_time,
+            publish_time,
+            is_original,
+            author,
+            articles_part,
+            blog_sort_id,
+            is_publish,
+            sort) values (
+            #{pid},
+            #{title},
+            #{content},
+            #{fileId},
+            #{status},
+            #{createTime},
+            #{updateTime},
+            #{publicTime},
+            #{ifOriginal},
+            #{author},
+            #{articlesQuoted},
+            #{blogSortedId},
+            #{ifPublish},
+            #{sort}
+            )
+        </insert>
+
+    <select id="queryList" parameterType="Blog" resultMap="blogVoResultMap">
+        select
+        a.blog_id as blog_pid,
+        a.title as blog_title,
+        a.content as blog_content,
+        a.author as blog_author,
+        a.create_time as blog_createTime,
+        a.update_time as blog_updateTime,
+        a.publish_time as blog_publicTime,
+        a.is_publish as blog_ifPublish,
+        a.status as blog_status,
+        a.file_id as blog_fileId,
+        a.is_original as blog_ifOriginal,
+        a.articles_part as blog_articlesQuoted,
+        b.blog_type_id as blogSort_pid,
+        b.type_name as blogSort_typeName,
+        b.content as blog_sort_content
+        from blog_info a
+        left join blog_type b on a.blog_sort_id = b.blog_type_id where 1=1
+        <if test="title != null and title !=''">
+            and a.title like concat('%',#{title} ,'%')
+        </if>
+        <if test="pid != null and pid !=''">
+            and a.blog_id = #{pid}
+        </if>
+        <if test="blogSortedId != null and  blogSortedId !=''">
+            and a.blog_sort_id = #{blogSortedId}
+        </if>
+    </select>
+
+    <select id="queryTagsById" resultType="Tag">
+        select d.tag_id as pid,
+        d.tag_content as tagContent,
+        c.mainRelationKey as mainRelationKey
+        from tag_info d left join relationType c on d.tag_id = c.relatedKey
+        where c.relationTypeCode='01' and c.mainRelationKey = #{blog_pid}
+    </select>
+
+    <select id="queryAll" parameterType="Blog" resultType="com.nzc.blog.admin.vo.BlogVo">
+         select
+          a.title as title,
+          a.author as author,
+          a.create_time as createTime,
+          a.update_time as updateTime,
+          a.publish_time as publicTime,
+          a.is_publish as ifPublish
+          from blog_info a
+    </select>
+
+    <select id="getBlogContentById" parameterType="java.io.Serializable" resultType="java.lang.String">
+        select  content from blog_info where blog_id = #{id}
+    </select>
+
+    <delete id="deleteById" parameterType="java.io.Serializable">
+        delete from blog_info where blog_id = #{id}
+    </delete>
+
+    <select id="deleteByIds">
+        delete from blog_info
+        where blog_id in
+        <foreach collection="list" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+    <update id="updateOne" parameterType="Blog">
+        update blog_info
+        <set>
+            <if test="title != null and title != ''">
+                title = #{title},
+            </if>
+            <if test="content != null and content != ''">
+                content = #{content},
+            </if>
+            <if test="fileId != null and fileId != ''">
+                file_id = #{fileId},
+            </if>
+            <if test="ifOriginal != null and ifOriginal != ''">
+                is_original = #{ifOriginal},
+            </if>
+            <if test="author != null and author != ''">
+                author = #{author},
+            </if>
+
+            <if test="articlesQuoted != null and articlesQuoted != ''">
+                articles_part = #{articlesQuoted},
+            </if>
+
+            <if test="blogSortedId != null and blogSortedId != ''">
+                blog_sort_id = #{blogSortedId},
+            </if>
+
+            <if test="ifPublish != null and ifPublish != ''">
+                is_publish = #{ifPublish},
+            </if>
+
+            <if test="status != null and status  != ''">
+                status = #{status},
+            </if>
+
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        where blog_id = #{pid}
+    </update>
+    
+    <select id="getCarousalBlog" parameterType="java.lang.Integer" resultType="Blog">
+         select content,title from blog_info where 1=1 order by  publish_time desc
+         <choose>
+             <when test="len != null">
+                  limit #{len}
+             </when>
+             <otherwise>
+                  limit 5
+             </otherwise>
+         </choose>
+    </select>
+</mapper>
+

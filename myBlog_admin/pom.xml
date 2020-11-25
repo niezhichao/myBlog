@@ -13,11 +13,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.nzc.blog</groupId>
-            <artifactId>myBlog_business</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
@@ -29,6 +24,12 @@
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.nzc.blog</groupId>
+            <artifactId>myBlog_commons</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 

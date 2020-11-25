@@ -1,7 +1,7 @@
 package com.nzc.blog.admin.api;
 
-import com.nzc.blog.business.dto.BlogDto;
-import com.nzc.blog.business.result.ResultInfo;
+import com.nzc.blog.admin.dto.BlogDto;
+import com.nzc.blog.common.result.ResultInfo;
 import com.nzc.blog.common.base.BaseApi;
 
 import java.io.Serializable;
