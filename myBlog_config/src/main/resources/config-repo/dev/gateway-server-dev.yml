@@ -1,3 +1,9 @@
+spring:
+  mvc:
+      async:
+        request-timeout: 20s
+  profiles:
+      include: common-dev
 zuul:
   routes:
     admin-api:
@@ -6,3 +12,5 @@ zuul:
     file-api:
       path: /file-api/**
       serviceId: file-server
+  host:
+    connection-request-timeout-millis: 20000

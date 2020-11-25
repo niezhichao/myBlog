@@ -9,10 +9,6 @@ spring:
           enabled: true
           service-id: myBlog-config
         profile: dev
-  servlet:
-    multipart:
-      max-request-size: 150MB
-      max-file-size: 100MB
 eureka:
   client:
     serviceUrl:

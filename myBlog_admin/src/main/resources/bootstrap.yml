@@ -9,13 +9,6 @@ spring:
           enabled: true
           service-id: myBlog-config
         profile: dev
-  devtools:
-    livereload:
-      enabled: true
-      port: 35729
-    restart:
-      enabled: true
-      additional-paths: src/main/java
 eureka:
   client:
     serviceUrl:

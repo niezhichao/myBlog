@@ -1,0 +1,27 @@
+spring:
+  datasource:
+     driverClassName: com.mysql.jdbc.Driver
+     url: jdbc:mysql://localhost:3306/myblog?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false
+     username: root
+     password: 123456
+     type: com.alibaba.druid.pool.DruidDataSource
+mybatis:
+  mapper-locations: classpath:/com/nzc/blog/mapper/*.xml
+  type-aliases-package: com.nzc.blog.admin.entity
+
+#
+# reasonable: 分页合理化参数，默认值为false。当该参数设置为 true 时，
+#          pageNum<=0 时会查询第一页， pageNum>pages（超过总数时），
+#          会查询最后一页。默认false 时，直接根据参数进行查询
+#
+#supportMethodsArguments: 参数化分页
+#    1 默认false
+#    2 为true 时   调用参数含有pageNum pageSize字段 会自然带有分页信息
+#
+#
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: false
+  params: count=countSql
+
