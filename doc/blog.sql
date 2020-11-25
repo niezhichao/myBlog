@@ -56,3 +56,12 @@ CREATE TABLE `relationtype` (
   `status` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`pid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE `blog_file` (
+  `fileId` varchar(32) NOT NULL,
+  `fileName` varchar(32) NOT NULL,
+  `fileSize` varchar(32) DEFAULT NULL,
+  `filePath` varchar(32) DEFAULT NULL,
+  `fileType` varchar(4) DEFAULT NULL,
+  PRIMARY KEY (`fileId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
