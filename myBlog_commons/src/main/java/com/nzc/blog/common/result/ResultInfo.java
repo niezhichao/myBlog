@@ -5,6 +5,8 @@ import com.nzc.blog.common.constant.ResultCode;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 
 /**
  * created on 2020/09/23
@@ -14,7 +16,7 @@ import lombok.NoArgsConstructor;
  */
 @NoArgsConstructor
 @Data
-public class ResultInfo {
+public class ResultInfo implements Serializable {
     private String resCode;
     private String resMsg;
     Object response;
@@ -32,6 +34,15 @@ public class ResultInfo {
 
     public static  ResultInfo response(Object data){
         return new ResultInfo(data);
+    }
+
+    public ResultInfo(Object data,ResultCode code){
+        this(code);
+        this.response = data;
+    }
+
+    public static ResultInfo response(Object data,ResultCode code){
+        return new ResultInfo(data,code);
     }
 
     public ResultInfo(Object data) {

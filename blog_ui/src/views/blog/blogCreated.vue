@@ -117,7 +117,7 @@
           return {
             headerText: "文章发布|",
             disabledChange:true,
-            uploadUrl:process.env.GATEWAY_API+'file-api/file/upload',
+            uploadUrl:process.env.GATEWAY_API+'file-server/file/upload',
             blogInfo:{
               ifOriginal:"1",
               title: null,
@@ -138,7 +138,7 @@
           this.$refs.upload.submit();
         },
         uploadResponse(response, file, fileList){
-
+          console.log(response);
         },
         fileRemove(file, fileList){
 
@@ -202,7 +202,6 @@
         }
       },
       mounted() {
-
           /*获取博客类型列表*/
         getBlogSortList().then(response =>{
           if (response.data.resCode == "00") {

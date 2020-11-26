@@ -6,10 +6,7 @@ import com.nzc.blog.file.api.FileRestApi;
 import com.nzc.blog.file.service.IFileOperService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
@@ -25,8 +22,9 @@ public class FileController implements FileRestApi {
 
     @PostMapping("/upload")
     @Override
-    public ResultInfo uploadFile(@RequestParam("file") MultipartFile file) {
-        return fileOperService.uploadFile(file);
+    public ResultInfo uploadFile(@RequestBody MultipartFile file) {
+        String filePath = fileOperService.uploadFile(file);
+        return ResultInfo.response(filePath,ResultCode.FILE_UPLOAD_SUCCESS);
     }
 
     @PostMapping("/uploadFiles")
@@ -34,5 +32,11 @@ public class FileController implements FileRestApi {
         CommonsMultipartResolver multipartFile = new CommonsMultipartResolver(request.getSession().getServletContext());
         System.out.println(multipartFile.isMultipart(request));
         return ResultInfo.response(ResultCode.FILE_UPLOAD_SUCCESS);
+    }
+
+
+    @PostMapping("/test")
+    public ResultInfo test(){
+        return ResultInfo.response(ResultCode.SUCCESS);
     }
 }

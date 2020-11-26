@@ -1,6 +1,7 @@
 package com.nzc.blog.common.constant;
 
-import sun.security.krb5.internal.PAForUserEnc;
+
+import java.io.File;
 
 public class BlogConstants {
 
@@ -19,5 +20,5 @@ public class BlogConstants {
     public static final String  STATUS_INVALID = "0";
     public static final String  STATUS_VALID = "1";
 
-    public static final String FILE_PATH_BASE ="E:/blogFile";
+    public static final String FILE_PATH_BASE ="E:"+ File.separator+"blogFile";
 }

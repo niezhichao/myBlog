@@ -35,6 +35,7 @@
     <pageHelper.v>1.2.4</pageHelper.v>
     <swagger2-ui.version>2.8.0</swagger2-ui.version>
     <swagger2-api.version>2.8.0</swagger2-api.version>
+    <feign.v>2.0.0.RELEASE</feign.v>
   </properties>
   <dependencies>
     <dependency>
@@ -62,6 +63,11 @@
 
   <dependencyManagement>
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <version>${feign.v}</version>
+        </dependency>
       <dependency>
         <groupId>io.springfox</groupId>
         <artifactId>springfox-swagger2</artifactId>

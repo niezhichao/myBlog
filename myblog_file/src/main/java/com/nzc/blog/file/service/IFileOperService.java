@@ -5,5 +5,5 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface IFileOperService {
 
-    ResultInfo uploadFile(MultipartFile file);
+    String uploadFile(MultipartFile file);
 }
