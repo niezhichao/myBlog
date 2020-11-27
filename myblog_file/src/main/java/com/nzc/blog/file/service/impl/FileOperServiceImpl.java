@@ -1,6 +1,8 @@
 package com.nzc.blog.file.service.impl;
 
 import com.nzc.blog.common.constant.BlogConstants;
+import com.nzc.blog.common.constant.ResultCode;
+import com.nzc.blog.common.exception.GlobalException;
 import com.nzc.blog.common.utils.CommonUtil;
 import com.nzc.blog.file.service.IFileOperService;
 import org.springframework.stereotype.Service;
@@ -14,7 +16,7 @@ public class FileOperServiceImpl implements IFileOperService {
     @Override
     public String uploadFile(MultipartFile file)  {
         if (file.isEmpty()){
-            throw new RuntimeException("上传文件为空");
+            throw new GlobalException(ResultCode.FILE_UPLOAD_EMPTY);
         }
 
         File dest = new File(BlogConstants.FILE_PATH_BASE);
@@ -31,6 +33,7 @@ public class FileOperServiceImpl implements IFileOperService {
                 file.transferTo(new File(filePath));
             }catch (IOException e){
                 e.printStackTrace();
+                throw new GlobalException(ResultCode.FILE_UPLOAD_FAILED);
             }
                 return filePath;
         }
@@ -46,6 +49,7 @@ public class FileOperServiceImpl implements IFileOperService {
             }
         }catch (IOException e){
             e.printStackTrace();
+            throw new GlobalException(ResultCode.FILE_UPLOAD_FAILED);
         }
 
         return filePath;

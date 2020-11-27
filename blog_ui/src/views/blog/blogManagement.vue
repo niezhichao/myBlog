@@ -301,14 +301,14 @@
           id:val
         }
         getBlogContentById(param).then(res => {
-          if (res.data.resCode == "00") {
+          if (res.data.resCode == this.$COMMON_CODE.RESULT_CODE.SUCCESS) {
             this.blogContent = res.data.response;
           }
         }).catch(error => {
-          this.$message({
-            type: "error",
-            message: error
-          })
+          this.$notify.error({
+            title:"服务器响应失败",
+            message:"服务器遇到错误，获取博客内容失败，无法完成请求： "+error
+          });
         });
       },
       eiditorChange(val){//子组件通知内容改变
@@ -323,17 +323,17 @@
       },
       editDataCommit(){
         updateBlog(this.editBlogData).then(res => {
-          if (res.data.resCode == "00") {
+          if (res.data.resCode == this.$COMMON_CODE.RESULT_CODE.SUCCESS) {
             this.$message({
               type: "success",
               message: res.data.resMsg
             });
           }
         }).catch(error => {
-          this.$message({
-            type: "error",
-            message: error
-          })
+          this.$notify.error({
+            title:"服务器响应失败",
+            message:"更新博客，服务器遇到错误，无法完成请求或者响应超时： "+error
+          });
         });
       },
       handleArtTag:function (command) {
@@ -387,17 +387,17 @@
           id: row.pid
         }
         delBlogById(param).then(res => {
-          if (res.data.resCode == "00") {
+          if (res.data.resCode == this.$COMMON_CODE.RESULT_CODE.SUCCESS) {
             this.$message({
               type: "success",
               message: res.data.resMsg
             });
           }
         }).catch(error => {
-          this.$message({
-            type: "error",
-            message: error
-          })
+          this.$notify.error({
+            title:"服务器响应失败",
+            message:"删除博客，服务器遇到错误，无法完成请求或者响应超时： "+error
+          });
         });
       },
       deleteSelections() {
@@ -413,17 +413,17 @@
           ids: ids + ''
         }
         delBlogLst(param).then(res => {
-          if (res.data.resCode == "00") {
+          if (res.data.resCode == this.$COMMON_CODE.RESULT_CODE.SUCCESS) {
             this.$message({
               type: "success",
               message: res.data.resMsg
             });
           }
         }).catch(error => {
-          this.$message({
-            type: "error",
-            message: error
-          })
+          this.$notify.error({
+            title:"服务器响应失败",
+            message:"删除博客，服务器遇到错误，无法完成请求或者响应超时： "+error
+          });
         })
       },
       selectionChange(selection) {
@@ -450,7 +450,7 @@
         this.blogQuery.pageSize = this.pageSize;
         this.blogQuery.pageNum = this.currentPage;
         getBlogLst(this.blogQuery).then(response => {
-          if (response.data.resCode == "00") {
+          if (response.data.resCode == this.$COMMON_CODE.RESULT_CODE.SUCCESS) {
             this.loading = false;
             var page = response.data.page;
             this.blogList = page.data;
@@ -460,23 +460,23 @@
           }
         }).catch(error => {
           this.loading = false;
-          this.$message({
-            type: "error",
-            message: error
+          this.$notify.error({
+            title:"服务器响应失败",
+            message:"服务器遇到错误，获取博客列表失败，无法完成请求： "+error
           });
         });
       },
       getAllBlogSort() {
         getBlogSortList().then(httpResult => {
-          if (httpResult.data.resCode == "00") {
+          if (httpResult.data.resCode == this.$COMMON_CODE.RESULT_CODE.SUCCESS) {
             var resData = httpResult.data.response;
             this.blogSortOptions = resData;
           }
         }).catch(error => {
           this.loading = false;
-          this.$message({
-            type: "error",
-            message: error
+          this.$notify.error({
+            title:"服务器响应失败",
+            message:"服务器遇到错误，获取博客分类失败，无法完成请求： "+error
           });
         });
       },
@@ -492,13 +492,13 @@
     created() {
       /*获取标签列表*/
       getTagList().then(response =>{
-        if (response.data.resCode == "00") {
+        if (response.data.resCode == this.$COMMON_CODE.RESULT_CODE.SUCCESS) {
           this.artTags = response.data.response;
         }
       }).catch(error =>{
-        this.$message({
-          type: "error",
-          message: error
+        this.$notify.error({
+          title:"服务器响应失败",
+          message:"服务器遇到错误，获取标签列表失败，无法完成请求： "+error
         });
       });
       this.getAllBlogSort();
