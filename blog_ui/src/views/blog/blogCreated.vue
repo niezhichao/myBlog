@@ -180,7 +180,7 @@
           }).catch(error=>{
            this.$notify.error({
               title:"服务器响应失败",
-              message:"博客发布，服务器遇到错误，请求错误或者响应超时： "+error
+              message:"博客发布，服务器错误，请求错误或者响应超时： "+error
            });
          })
         },
