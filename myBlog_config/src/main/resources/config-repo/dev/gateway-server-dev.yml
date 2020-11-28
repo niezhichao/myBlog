@@ -14,3 +14,13 @@ zuul:
       serviceId: file-server
   host:
     connection-request-timeout-millis: 20000
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 20000
+ribbion:
+  ReadTimeout: 20000
+  SocketTimeout: 20000
