@@ -16,6 +16,7 @@
     <module>myBlog_register</module>
     <module>myBlog_config</module>
       <module>myblog_file</module>
+    <module>myBlog_zipkin</module>
   </modules>
 
   <parent>

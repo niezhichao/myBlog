@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @EnableEurekaClient
-@ComponentScan({"com.nzc.blog.file", "com.nzc.blog.admin.service.impl"})
+@ComponentScan({"com.nzc.blog.file"})
 @MapperScan("com.nzc.blog.admin.dao")
 public class FileServerApplication {
     public static void main(String[]  args){

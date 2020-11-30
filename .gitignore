@@ -6,6 +6,7 @@
 *.project
 *.log
 /target
+/out
 
 .DS_Store
 node_modules/

@@ -8,6 +8,11 @@ spring:
      username: root
      password: 123456
      type: com.alibaba.druid.pool.DruidDataSource
+  zipkin:
+    base-url: http://localhost:8897
+  sleuth:
+      sampler:
+        probability: 1
 mybatis:
   mapper-locations: classpath:/com/nzc/blog/mapper/*.xml
   type-aliases-package: com.nzc.blog.admin.entity
@@ -27,4 +32,5 @@ pagehelper:
   reasonable: true
   supportMethodsArguments: false
   params: count=countSql
+
 
