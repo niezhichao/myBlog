@@ -8,5 +8,7 @@ spring:
           service-id: myBlog-config
         profile: dev
 
-
+module:
+  logging:
+    path: E:/workspace/blogLog
 

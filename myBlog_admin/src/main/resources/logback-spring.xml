@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
     日志级别从低到高分为TRACE < DEBUG < INFO < WARN < ERROR < FATAL，如果设置为WARN，则低于WARN的信息都不会输出
-    scan：当此属性设置为true时，配置文件如果发生改变，将会被重新加载，默认值为true。
-    scanPeriod：设置监测配置文件是否有修改的时间间隔，如果没有给出时间单位，默认单位是毫秒；当scan为true时，此属性生效。默认的时间间隔为1分钟。
-    debug：当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。默认值为false。
 -->
-<configuration scan="false" scanPeriod="60 seconds">
+<configuration>
 
     <springProperty scope="context" name="LOG_APP_NAME" source="spring.application.name"/>
-    <springProperty scope="context" name="LOG_APP_PATH" source="module.log.path"/>
+    <springProperty scope="context" name="LOG_APP_PATH" source="module.logging.path"/>
     <!-- 彩色日志 -->
     <!-- 彩色日志依赖的渲染类 -->
     <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter" />
@@ -41,7 +38,7 @@
         <file>${LOG_APP_PATH}/${LOG_APP_NAME}.log</file>
         <!--日志文档输出格式-->
         <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}  [%thread] %-5level %logger{50} - %msg%n</pattern>
             <charset>UTF-8</charset>
         </encoder>
         <!-- 日志记录器的滚动策略，按日期，按大小记录 -->
@@ -173,8 +170,8 @@
         可以包含零个或多个元素，标识这个appender将会添加到这个logger。
     -->
 
-    <logger name="org.springframework" level="DEBUG"/>
-    <logger name="com.nzc.blog" level="DEBUG"/>
+    <!--<logger name="org.springframework" level="DEBUG"/>
+    <logger name="com.nzc.blog" level="DEBUG"/>-->
 
     <!--
         root与logger是父子关系，没有特别定义则默认为root，任何一个类只会和一个logger对应，
