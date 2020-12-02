@@ -1,5 +1,6 @@
 server:
   port: 8899
+#本地存储配置文件
 spring:
   application:
     name: myBlog-config
