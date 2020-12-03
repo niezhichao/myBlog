@@ -117,9 +117,10 @@
         <appender-ref ref="FILE"/>
     </logger>-->
 
-    <logger name="com.nzc.blog" level="ERROR" additivity="false" >
+
+    <!--<logger name="com.nzc.blog" level="ERROR" additivity="false" >
         <appender-ref ref="FILE"/>
-    </logger>
+    </logger>-->
 
     <root level="INFO">
         <appender-ref ref="CONSOLE"/>

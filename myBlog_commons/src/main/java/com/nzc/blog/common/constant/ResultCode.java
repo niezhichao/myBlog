@@ -2,11 +2,11 @@ package com.nzc.blog.common.constant;
 
 public enum ResultCode {
 
-    SUCCESS("REQUEST SUCCESS","0000"),
-    ERROR("APPLICATION EXCEPTION","0001"),
-    FILE_UPLOAD_SUCCESS("FILE UPLOAD SUCCESS","FU000"),
-    FILE_UPLOAD_FAILED("FILE UPLOAD FAILED","FU001"),
-    FILE_UPLOAD_EMPTY("FILE EMPTY","FU002");
+    SUCCESS("Request successfully","0000"),
+    ERROR("Application exception occurred","0001"),
+    FILE_UPLOAD_SUCCESS("File upload successfully","FU000"),
+    FILE_UPLOAD_FAILED("File upload failed","FU001"),
+    FILE_UPLOAD_EMPTY("File is empty","FU002");
     private String msg;
     private String code;
 

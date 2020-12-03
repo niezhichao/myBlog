@@ -21,4 +21,7 @@ public class BlogConstants {
     public static final String  STATUS_VALID = "1";
 
     public static final String FILE_PATH_BASE ="E:"+ File.separator+"blogFile";
+
+    public static final String LOG_ID_KEY = "requestId";
+    public static final String ZIPKIN_TRACEID_KEY = "X-B3-TraceId";
 }
