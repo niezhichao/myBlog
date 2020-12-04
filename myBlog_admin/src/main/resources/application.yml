@@ -1,6 +1,9 @@
 spring:
   profiles:
     active: dev
+log:
+  active:
+    profile: dev
 
 ---
 #开发环境配置

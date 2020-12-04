@@ -5,18 +5,17 @@
 <configuration>
 
 
-    <property file="app/application.properties"/>
-
+    <property resource="com/nzc/blog/common/resource/app.properties"/>
     <!--多环境切换-->
     <property name="log_active_profile" value="${log_active_profile}"/>
     <if condition='property("log_active_profile").contains("dev")'>
         <then>
-            <property file="app/logConfig-dev.properties"/>
+            <property resource="com/nzc/blog/common/resource/logConfig-dev.properties"/>
         </then>
     </if>
     <if condition='property("log_active_profile").contains("prod")'>
         <then>
-            <property file="app/logConfig-prod.properties"/>
+            <property resource="com/nzc/blog/common/resource/logConfig-prod.properties"/>
         </then>
     </if>
 
