@@ -231,7 +231,7 @@
         <el-row>
           <el-col :span="6" :offset="10">
             <el-button @click="editBlogDialogVisible = false">关闭</el-button>
-            <el-button type="primary" @click="editDataCommit">确 定</el-button>
+            <el-button type="primary" @click="editDataCommit">确定</el-button>
           </el-col>
         </el-row>
 
@@ -323,6 +323,7 @@
       },
       editDataCommit(){
         updateBlog(this.editBlogData).then(res => {
+          console.log("编辑博客返回结果"+res);
           if (res.data.resCode == this.$COMMON_CODE.RESULT_CODE.SUCCESS) {
             this.$message({
               type: "success",

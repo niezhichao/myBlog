@@ -11,6 +11,7 @@ import org.slf4j.MDC;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,10 +25,12 @@ public class GlobalExceptionHandler {
 
 
     @ExceptionHandler(Exception.class)
-    public ResultInfo commonException(Exception ex){
+    public ResultInfo commonException(HttpServletRequest request,Exception ex){
         ex.printStackTrace();
+        System.out.println("请求的URL:"+request.getRequestURL());
+        System.out.println("请求的URI:"+request.getRequestURI());
         logger.error("系统异常",ex);
-        return new ResultInfo(getResponseMap(),ResultCode.ERROR);
+        return new ResultInfo(getResponseMap(),ResultCode.SYSTEM_ERROR);
     }
 
     @ExceptionHandler(GlobalException.class)

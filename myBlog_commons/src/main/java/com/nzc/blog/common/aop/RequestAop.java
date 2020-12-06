@@ -3,10 +3,7 @@ package com.nzc.blog.common.aop;
 import com.nzc.blog.common.constant.BlogConstants;
 import com.nzc.blog.common.utils.CommonUtil;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
@@ -43,8 +40,10 @@ public class RequestAop {
         logger.info("The id trace current request："+traceId);
     }
 
-    @After(value = "executionService()")
-    public  void doAfter(){
+
+    @AfterReturning(pointcut = "executionService()",returning = "returnValue")
+    public  void doAfter(JoinPoint joinPoint,Object returnValue){
+        System.out.println("Api response result:"+returnValue);
         MDC.remove(BlogConstants.LOG_ID_KEY);
     }
 }
