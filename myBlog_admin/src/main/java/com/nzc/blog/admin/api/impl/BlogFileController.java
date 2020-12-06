@@ -1,4 +1,4 @@
-package com.nzc.blog.admin.api;
+package com.nzc.blog.admin.api.impl;
 
 import com.nzc.blog.admin.feign.FileOperFeign;
 import com.nzc.blog.common.result.ResultInfo;

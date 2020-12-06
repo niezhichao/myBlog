@@ -11,7 +11,11 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableFeignClients
 @SpringBootApplication
 @EnableEurekaClient
-@ComponentScan({"com.nzc.blog.admin", "com.nzc.blog.admin.service.impl","com.nzc.blog.common.exception"})
+@ComponentScan({"com.nzc.blog.admin",
+        "com.nzc.blog.admin.service.impl",
+        "com.nzc.blog.common.exception",
+        "com.nzc.blog.common.aop"
+})
 @MapperScan("com.nzc.blog.admin.dao")
 public class AdminApplication {
     public static void main(String[]  args){
