@@ -34,9 +34,4 @@ public class FileController implements FileRestApi {
         return ResultInfo.response(ResultCode.FILE_UPLOAD_SUCCESS);
     }
 
-
-    @PostMapping("/test")
-    public ResultInfo test(){
-        return ResultInfo.response(ResultCode.SUCCESS);
-    }
 }

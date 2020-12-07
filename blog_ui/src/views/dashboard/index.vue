@@ -130,12 +130,7 @@ export default {
       len:10
     }
     getCarousalBlog(param).then(res=>{
-      this.newArticles = res.data.response;
-    }).catch(error=>{
-      this.$notify.error({
-        title:"服务器响应失败",
-        message:"服务器遇到错误，无法完成请求： "+error
-      });
+      this.newArticles = res.response;
     })
   }
 };

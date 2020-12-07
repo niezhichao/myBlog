@@ -89,17 +89,12 @@
             id:val
           }
           delBlogSort(param).then(response=>{
-            if (response.data.resCode == this.$COMMON_CODE.RESULT_CODE.SUCCESS){
+            if (response.resCode == this.$COMMON_CODE.RESULT_CODE.SUCCESS){
               this.$message({
                 type: "success",
-                message: response.data.resMsg
+                message: response.resMsg
               })
             }
-          }).catch(error=>{
-            this.$notify.error({
-              title:"服务器响应失败",
-              message:"删除分类，服务器遇到错误，无法完成请求或响应超时： "+error
-            });
           });
         },
         deleteTagById(val){
@@ -107,78 +102,53 @@
             id:val
           }
           delTag(param).then(response=>{
-            if (response.data.resCode == this.$COMMON_CODE.RESULT_CODE.SUCCESS){
+            if (response.resCode == this.$COMMON_CODE.RESULT_CODE.SUCCESS){
               this.$message({
                 type: "success",
-                message: response.data.resMsg
+                message: response.resMsg
               })
             }
-          }).catch(error=>{
-            this.$notify.error({
-              title:"服务器响应失败",
-              message:"删除标签，服务器遇到错误，无法完成请求或响应超时： "+error
-            });
           });
         },
         updateBlogSortData(val){
           updateBlogSort(val).then(response=>{
-            if (response.data.resCode == this.$COMMON_CODE.RESULT_CODE.SUCCESS){
+            if (response.resCode == this.$COMMON_CODE.RESULT_CODE.SUCCESS){
               this.$message({
                 type: "success",
-                message: response.data.resMsg
+                message: response.resMsg
               })
             }
-          }).catch(error=>{
-            this.$notify.error({
-              title:"服务器响应失败",
-              message:"更新博客，服务器遇到错误，无法完成请求或响应超时： "+error
-            });
           });
         },
         insertBlogSortData(val){
 
           addBlogSort(val).then(response=>{
-            if (response.data.resCode == this.$COMMON_CODE.RESULT_CODE.SUCCESS){
+            if (response.resCode == this.$COMMON_CODE.RESULT_CODE.SUCCESS){
               this.$message({
                 type: "success",
-                message: response.data.resMsg
+                message: response.resMsg
               })
             }
-          }).catch(error=>{
-            this.$notify.error({
-              title:"服务器响应失败",
-              message:"分类新增，服务器遇到错误，无法完成请求或响应超时： "+error
-            });
           });
         },
         updateTagData(val){
           updateTag(val).then(response=>{
-            if (response.data.resCode == this.$COMMON_CODE.RESULT_CODE.SUCCESS){
+            if (response.resCode == this.$COMMON_CODE.RESULT_CODE.SUCCESS){
               this.$message({
                 type: "success",
-                message: response.data.resMsg
+                message: response.resMsg
               })
             }
-          }).catch(error=>{
-            this.$notify.error({
-              title:"服务器响应失败",
-              message:"标签更新，服务器遇到错误，无法完成请求或响应超时： "+error
-            });
           });
         },
         insertTagData(val){
           addTag(val).then(response=>{
-            if (response.data.resCode == this.$COMMON_CODE.RESULT_CODE.SUCCESS){
+            if (response.resCode == this.$COMMON_CODE.RESULT_CODE.SUCCESS){
               this.$message({
                 type: "success",
-                message: response.data.resMsg
+                message: response.resMsg
               })
             }
-          }).catch(error=>{
-            this.$notify.error({
-              title:"服务器响应失败",
-              message:"标签新增，服务器遇到错误，无法完成请求或响应超时： "+error
-            });
           });
         },
         typePageSizeChange(pageSize){
@@ -203,16 +173,11 @@
               pageSize:this.typePageSize
             }
           getAllBlogSortWithPage(param).then(response=>{
-              if (response.data.resCode=this.$COMMON_CODE.RESULT_CODE.SUCCESS){
-                var page = response.data.page;
+              if (response.resCode=this.$COMMON_CODE.RESULT_CODE.SUCCESS){
+                var page = response.page;
                 this.typeListData = page;
               }
-          }).catch(error=>{
-            this.$notify.error({
-              title:"服务器响应失败",
-              message:"服务器遇到错误，获取博客分类失败，无法完成请求： "+error
-            });
-          })
+          });
         },
         getAllTags(){
           var param = {
@@ -220,16 +185,11 @@
             pageSize:this.tagPageSize
           };
           getAllTagsWithPage(param).then(response=>{
-            if (response.data.resCode=this.$COMMON_CODE.RESULT_CODE.SUCCESS){
-              var page = response.data.page;
+            if (response.resCode=this.$COMMON_CODE.RESULT_CODE.SUCCESS){
+              var page = response.page;
               this.tagListData = page;
 
             }
-          }).catch(error=>{
-            this.$notify.error({
-              title:"服务器响应失败",
-              message:"服务器遇到错误，获取标签列表失败，无法完成请求： "+error
-            });
           });
         }
       },

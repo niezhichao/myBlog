@@ -3,7 +3,7 @@ package com.nzc.blog.common.exception;
 import com.nzc.blog.common.constant.ResultCode;
 
 /**
- * 全局统一异常处理
+ * 自定义全局异常
  */
 public class GlobalException extends RuntimeException{
 

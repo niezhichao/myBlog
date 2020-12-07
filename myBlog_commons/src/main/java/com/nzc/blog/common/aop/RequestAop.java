@@ -37,13 +37,18 @@ public class RequestAop {
     public void doBefore(JoinPoint joinPoint){
         String traceId = CommonUtil.getRequestId();
         MDC.put(BlogConstants.LOG_ID_KEY,traceId);
-        logger.info("The id trace current request："+traceId);
+        logger.info("The id trace current request is："+traceId);
     }
 
 
     @AfterReturning(pointcut = "executionService()",returning = "returnValue")
     public  void doAfter(JoinPoint joinPoint,Object returnValue){
-        System.out.println("Api response result:"+returnValue);
-        MDC.remove(BlogConstants.LOG_ID_KEY);
+        logger.info("Api responce successfully");
+       MDC.clear();
+    }
+
+    @AfterThrowing(pointcut = "executionService()",throwing = "ex")
+    public void afterThrowing(JoinPoint point, Exception ex){
+        logger.error("Method afterThrowing:"+ex.getCause());
     }
 }

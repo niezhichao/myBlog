@@ -27,18 +27,18 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResultInfo commonException(HttpServletRequest request,Exception ex){
         ex.printStackTrace();
-        System.out.println("请求的URL:"+request.getRequestURL());
-        System.out.println("请求的URI:"+request.getRequestURI());
-        logger.error("系统异常",ex);
-        return new ResultInfo(getResponseMap(),ResultCode.SYSTEM_ERROR);
+        logger.error("System exception",ex);
+        Map<String,String> response = getResponseMap();
+        response.put(BlogConstants.REQUEST_URI_KEY,request.getRequestURI());
+        return new ResultInfo(response,ResultCode.SYSTEM_ERROR);
     }
 
     @ExceptionHandler(GlobalException.class)
     public ResultInfo customException(GlobalException ex){
         ex.printStackTrace();
-        logger.error("自定义异常",ex);
+        logger.error("Customize exception:",ex);
         Map<String,String> response = getResponseMap();
-        response.put(ex.getExCode(),ex.getMessage());
+        response.put(BlogConstants.RESULT_EXCEPTION_KEY,ex.getExCode()+":  "+ex.getMessage());
         return new  ResultInfo(response,ResultCode.ERROR);
     }
 
@@ -55,6 +55,8 @@ public class GlobalExceptionHandler {
         traceIdMap.put(BlogConstants.ZIPKIN_TRACEID_KEY,zipkinTraceId);
         String logId = MDC.get(BlogConstants.LOG_ID_KEY);
         traceIdMap.put(BlogConstants.LOG_ID_KEY,logId);
+
+        MDC.clear();
         return traceIdMap;
     }
 }
