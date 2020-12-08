@@ -43,7 +43,7 @@ public class RequestAop {
 
     @AfterReturning(pointcut = "executionService()",returning = "returnValue")
     public  void doAfter(JoinPoint joinPoint,Object returnValue){
-        logger.info("Api responce successfully");
+        logger.info("Api response successfully");
        MDC.clear();
     }
 
