@@ -25,9 +25,9 @@ export default {
     width: 100%;
   }
 
-  #app .homePage{
+/*  #app .homePage{
     height: 100%;
     width: 100%;
     background-color: rgba(26,71,60,0.15);
-  }
+  }*/
 </style>

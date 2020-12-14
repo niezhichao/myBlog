@@ -4,7 +4,7 @@
          <div class="nav-logo-block" style="float: left">
            <span class="logo-place">ABCDFDFSDFJSDF</span>
          </div>
-         <div class="navCtent" style="float: right">
+         <div class="navCtent" style="  float: right">
            <ul class="navHeader">
              <li class="navItem">首页</li>
              <li class="navItem">后端</li>

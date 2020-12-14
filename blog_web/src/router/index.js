@@ -1,13 +1,17 @@
 import Vue from 'vue'
-import Router from 'vue-router'
-import homePage from '@/views/homePage'
+import Router from 'vue-router';
+import home from '@/views/index';
 
 Vue.use(Router)
 
 export const RouterMapConfig=[
   {
     path: '/',
-    component: homePage
+    component: home,
+    children: [{
+      path: '/',
+      component: () => import('@/views/homecontent')
+    }]
   }
 ];
 
