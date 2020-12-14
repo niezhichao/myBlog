@@ -16,8 +16,12 @@ CREATE TABLE `blog_info` (
   `blog_sort_id` varchar(32) DEFAULT NULL COMMENT '博客分类ID',
   `is_publish` varchar(1) DEFAULT '1' COMMENT '是否发布：0：否，1：是',
   `sort` int(11) DEFAULT '0' COMMENT '排序字段',
-  PRIMARY KEY (`blog_id`)
+  `publish_time` timestamp NULL DEFAULT NULL,
+  `summary` varchar(1000) DEFAULT NULL COMMENT '内容简介',
+  PRIMARY KEY (`blog_id`),
+  UNIQUE KEY `title_uq` (`title`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='博客表';
+
 
 /**
 *标签表

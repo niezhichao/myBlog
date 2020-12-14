@@ -73,7 +73,8 @@ service.interceptors.response.use(
     Message({
       message: error,
       type: 'error',
-      duration: 0
+      showClose:true,
+      duration: 5000
     })
     return Promise.reject(error)
   }

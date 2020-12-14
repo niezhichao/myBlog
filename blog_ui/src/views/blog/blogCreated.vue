@@ -66,7 +66,20 @@
                <el-radio size="mini"  v-model="blogInfo.ifOriginal" @change="redioChange"  label="1" >原创</el-radio>
                <el-radio size="mini"  v-model="blogInfo.ifOriginal"  label="0" @change="redioChange" >转载</el-radio>
           </el-col>
+        </el-row>
 
+        <el-row class="row-margin">
+          <el-col :span="2">
+            <span style="color: red">*</span><span>内容简介</span>
+          </el-col>
+          <el-col :span="10">
+            <el-input
+              type="textarea"
+              autosize
+              placeholder="请输入内容简介"
+              v-model="blogInfo.articlesQuoted" >
+            </el-input>
+          </el-col>
         </el-row>
 
         <el-row style="margin-top: 10px">
@@ -212,7 +225,7 @@
 <style scoped>
  .blogCreatedWrapper{
    margin-top: 20px;
-   height: 700px;
+   height: 780px;
    border-bottom: 1px solid #d9ecff;
    background-color: rgba(193,226,161,0.25);
    box-shadow: 5px 5px 3px 0 rgba(0, 0, 0, .12), 0 0 3px 0 rgba(0, 0, 0, .04);
