@@ -1,12 +1,16 @@
 <template>
     <div class="homePage">
+      <div id="homePageContainer">
         <home-page-header/>
-      <div class="app-content">
-         <app-main/>
+        <div class="app-content">
+          <app-main/>
+        </div>
       </div>
+
       <footer class="footer">
-        <p>IT Blog  recod of NieZhiChao</p>
+        <p>IT Blog  record of NieZhiChao</p>
       </footer>
+
     </div>
 </template>
 
@@ -34,9 +38,17 @@
     overflow-y: auto;
   }
 
-  .footer {
-    width: 100%;
-    height: 50px;
-    text-align: center;
+  /*保持底部内容都在最下面*/
+  #homePageContainer{
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -30px;/*margin-bottom的负值等于footer高度*/
   }
+
+  .footer {
+    height: 30px;
+    clear:both;
+    text-align: center;
+    }
 </style>

@@ -50,6 +50,10 @@
  margin-right: 20px;
 }
 
+.logo-place,.navItem{
+  color: rgba(0,0,0,0.68);
+}
+
 .logo-place{
   font-size: 20px;
 }
