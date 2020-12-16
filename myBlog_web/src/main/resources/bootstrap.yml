@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: web-api
+  cloud:
+      config:
+        discovery:
+          enabled: true
+          service-id: myBlog-config
+        profile: dev
+
+
+

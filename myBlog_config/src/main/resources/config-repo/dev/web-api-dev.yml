@@ -1,0 +1,11 @@
+spring:
+  devtools:
+    livereload:
+        enabled: true
+        port: 35729
+    restart:
+        enabled: true
+        additional-paths: src/main/java
+#增加common-dev的profiles 为了加载公共配置  application-common-dev.yml
+  profiles:
+      include: common-dev

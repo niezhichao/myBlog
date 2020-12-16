@@ -12,6 +12,9 @@ zuul:
     file-api:
       path: /file-api/**
       serviceId: file-server
+    web-api:
+      path: /web-api/**
+      serviceId: web-api
   host:
     connection-request-timeout-millis: 20000
 hystrix:

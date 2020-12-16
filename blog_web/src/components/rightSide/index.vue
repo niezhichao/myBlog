@@ -93,6 +93,7 @@
     padding-bottom: 15px;
   }
 
+  /*超出的文字用...*/
   ul.recentlyUpdateUl li{
     overflow: hidden;
     text-overflow:ellipsis;

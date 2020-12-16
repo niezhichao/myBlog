@@ -7,10 +7,7 @@
          <div class="navCtent" style="  float: right">
            <ul class="navHeader">
              <li class="navItem">首页</li>
-             <li class="navItem">后端</li>
-             <li class="navItem">前端</li>
-             <li class="navItem">linux</li>
-             <li class="navItem">数据库</li>
+             <li class="navItem" v-for="item,index in headerMenu">{{item.typeName}}</li>
              <li class="navItem">其他</li>
            </ul>
          </div>
@@ -20,7 +17,8 @@
 
 <script>
     export default {
-        name: "homePageHeader"
+        name: "homePageHeader",
+       props:["headerMenu"]
     }
 </script>
 

@@ -20,7 +20,7 @@
   import rightSide from "../components/rightSide";
     export default {
         name: "homecontent",
-      components:{
+        components:{
         articleItem,
         rightSide
       }
@@ -42,6 +42,7 @@
   .font-desc-breadCrumb{
     display: block;
     padding-top: 10px;
+    padding-left: 20px;
     color: rgba(7,7,35,0.47);
   }
 

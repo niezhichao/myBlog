@@ -7,10 +7,12 @@ import './assets/theme/index.css'
 import Element from 'element-ui'
 import  'element-ui/lib/theme-chalk/index.css'
 import '@/icons'
+import commCodeUtils from './utils/commCodeUtils';
 
 Vue.config.productionTip = false
 
 Vue.use(Element);
+Vue.use(commCodeUtils);
 
 /* eslint-disable no-new */
 new Vue({
