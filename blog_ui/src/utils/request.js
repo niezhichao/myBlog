@@ -5,7 +5,6 @@ import Vue from 'vue';
 
 const COMMON_CODE=Vue.prototype.$COMMON_CODE;
 const FUCTION_UTILS = Vue.prototype.$FUCTION_UTILS;
-
 const service = axios.create({
   baseURL: '',
   withCredentials: true,

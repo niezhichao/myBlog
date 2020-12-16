@@ -23,19 +23,23 @@
         components:{
         articleItem,
         rightSide
+      },
+      mounted(){
       }
     }
+
 </script>
 
 <style scoped>
   .app-article-content{
-    background-color: white;
+   /* background-color: white;*/
     width: 50%;
     margin-left: 40px;
     float: left;
     position: relative;
   }
   .app-homecontent-header{
+    background-color: white;
     height: 40px;
     box-shadow:0 1px 5px  rgba(9,31,35,0.47);
   }

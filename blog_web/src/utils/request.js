@@ -2,11 +2,10 @@ import axios from 'axios';
 
 import { Message, MessageBox, Loading } from 'element-ui';
 import Vue from 'vue';
-var prototype = Vue.prototype;
-console.log(prototype)
-const COMMON_CODE=Vue.prototype.$COMMON_CODE;
-const FUCTION_UTILS = Vue.prototype.$FUCTION_UTILS;
 
+var  COMMON_CODE;
+
+var FUCTION_UTILS;
 const service = axios.create({
   baseURL: '',
   withCredentials: true,
@@ -27,6 +26,7 @@ service.interceptors.request.use(
     return config
   },
   function (error) {
+    FUCTION_UTILS = Vue.prototype.$FUCTION_UTILS;
     Promise.reject(error);
     // 出错了直接关闭loading
     if(loading) {
@@ -41,7 +41,13 @@ service.interceptors.response.use(
   function (response) {
     const res = response.data;
     loading.close();
-
+    /**
+     * 不知道为什么 这些值 在js的开头加载 会undiefined
+     * begin TODO
+     */
+    COMMON_CODE = Vue.prototype.$COMMON_CODE;
+    FUCTION_UTILS = Vue.prototype.$FUCTION_UTILS;
+    /*end*/
     if (res){
      var code = res.resCode;
      if (code === COMMON_CODE.RESULT_CODE.SUCCESS || code === COMMON_CODE.RESULT_CODE.FILE_UPLOAD_SUCCESS){//成功直接返回结果

@@ -32,9 +32,9 @@
     },
     mounted() {
       getHomeHeaderMenu().then(response => {
-        /*if (response.resCode == this.$COMMON_CODE.RESULT_CODE.SUCCESS) {
+        if (response.resCode == this.$COMMON_CODE.RESULT_CODE.SUCCESS) {
           this.headerMenu = response.response;
-        }*/
+        }
       })
     }
   }
