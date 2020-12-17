@@ -4,8 +4,9 @@
           <div class="login-info">
             <div class="userIcon">
               <svg-icon  icon-class="user1" class-name="card-panel-icon"></svg-icon>
-              <span style="display: block;margin-top:10px;font-family: 黑体;font-weight: bold;font-size: 18px;">测试用户</span>
             </div>
+              <span style="display: block;margin-top:10px;padding-left:102px;font-family: 黑体;font-weight: bold;font-size: 18px;">Api Caller</span>
+
             <ul class="userInfoList">
               <li>
                 <i class="el-icon-star-off"></i>
@@ -25,7 +26,7 @@
             <ul class="recentlyUpdateUl">
               <li class="textOverflowStyle" v-for="item,index in dataList">
                <span class="circleIndex">{{index+1}}</span>
-                <span>{{item.description_test}}</span>
+                <span @click="skipToDetailPage(item.pid)" class="style_title">{{item.title}}</span>
               </li>
             </ul>
       </div>
@@ -35,21 +36,17 @@
 <script>
     export default {
         name: "rightSide",
+        props:["dataList"],
         data(){
           return {
-            dataList:[
-              {
-                description_test:"ReactHooks使用useMemo和useCallback优化程序性能"
-              },
-              {
-                description_test:"ReactHooks使用useMemo和useCallback优化程序性能"
-              },
-              {
-                description_test:"ReactHooks使用useMemo和useCallback优化程序性能"
-              }
-            ]
+
           }
+        },
+      methods:{
+        skipToDetailPage(val){
+          console.log(val);
         }
+      }
     }
 </script>
 
@@ -112,5 +109,10 @@
     text-align: center;
     vertical-align: middle;
     border: rgba(13,25,31,0.5) solid 1px;
+  }
+
+  span.style_title:hover{
+    cursor: pointer;
+    color: #409eff;
   }
 </style>

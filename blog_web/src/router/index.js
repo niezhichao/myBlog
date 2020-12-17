@@ -12,6 +12,14 @@ export const RouterMapConfig=[
       path: '/',
       component: () => import('@/views/homecontent')
     }]
+  },
+  {
+    path:"/article",
+    component: home,
+    children: [{
+      path: 'display',
+      component: () => import('@/views/showArticle')
+    }]
   }
 ];
 

@@ -2,15 +2,15 @@
     <div class="articleItem">
 
       <div class="art-content">
-        <router-link to="/page" tag="div">
-          <div class="art-title">{{articleIntros.title}}</div>
-         <div class="art-intro">{{articleIntros.intro}}</div>
+        <router-link to="/article/display" tag="div">
+          <div class="art-title">{{intro.title}}</div>
+         <div class="art-intro">{{intro.introDesc}}</div>
         </router-link>
         <div class="art-footer">
-            <i class="el-icon-link style_pointer"><span class="style_underline" style="font-size: 5px;padding-left: 5px;color: rgba(5,9,9,0.65)">Vue</span></i>
+            <i class="el-icon-link style_pointer"><span class="style_underline" style="font-size: 5px;padding-left: 5px;color: rgba(5,9,9,0.65)">{{intro.sortName}}</span></i>
           <svg-icon style="padding-left: 20px;" icon-class="time" class-name="card-panel-icon">
           </svg-icon>
-          <span style="font-size: 5px;padding-left: 3px;color: rgba(5,9,9,0.65)">一个月前</span>
+          <span style="font-size: 5px;padding-left: 3px;color: rgba(5,9,9,0.65)">{{intro.publicTime}}</span>
         </div>
       </div>
     </div>
@@ -19,12 +19,10 @@
 <script>
     export default {
         name: "articleItem",
+       props:["intro"],
       data(){
           return {
-            articleIntros:{
-                 title:"Vue项目开发常见问题和解决方案汇总（持续整理）",
-                 intro:"Vue Cli 打包之后静态资源路径不对的解决方法Vue Cli 打包之后静态资源路"
-            }
+
           }
       },
       methods:{
@@ -37,7 +35,7 @@
 <style scoped>
   .art-content{
     background-color: white;
-    margin-top: 10px;
+    margin-top: 5px;
     box-shadow:0 1px 5px  rgba(9,31,35,0.47);
   }
 

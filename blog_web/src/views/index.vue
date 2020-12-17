@@ -42,13 +42,14 @@
 
 <style scoped>
   .app-content {
-    margin-top: 10px;
+   /* margin-top: 10px;*/
     height: 100%;
   }
 
   .homePage {
     height: 100%;
-    background-color: rgba(26, 71, 60, 0.15);
+    /*background-color: rgba(26, 71, 60, 0.15);*/
+    background-color: rgba(17,74,74,0.09);
     overflow-y: auto;
   }
 
@@ -61,6 +62,7 @@
   }
 
   .footer {
+padding-top: 10px;
     height: 30px;
     clear: both;
     text-align: center;

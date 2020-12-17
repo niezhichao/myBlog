@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nzc.blog.web.dao.BlogIntroDao">
+
+    <select id="getBlogIntros" resultType="com.nzc.blog.web.vo.BlogIntroVo">
+        select a.blog_id as pid,
+        a.summary as introDesc,
+        a.publish_time as publicTime,
+        b.type_name as sortName
+        from blog_info a
+        left join blog_type b on a.blog_sort_id=b.blog_type_id
+    </select>
+
+    <select id="homePageBlogIntros" resultType="com.nzc.blog.web.vo.BlogIntroVo">
+        select a.blog_id as pid,
+        title,
+        a.summary as introDesc,
+        a.publish_time as publicTime,
+        b.type_name as sortName
+        from blog_info a
+        left join blog_type b on a.blog_sort_id=b.blog_type_id order by a.publish_time desc limit #{size}
+    </select>
+</mapper>
+

@@ -26,4 +26,7 @@ public class BlogConstants {
     public static final String ZIPKIN_TRACEID_KEY = "X-B3-TraceId";
     public static final String REQUEST_URI_KEY="requestUri";
     public static final String RESULT_EXCEPTION_KEY="exception";
+
+    /*首页简介条数*/
+    public static final int HOME_INTRO_SIZE = 10;
 }
