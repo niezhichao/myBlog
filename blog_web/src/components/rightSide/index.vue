@@ -58,7 +58,7 @@
 
   .login-info{
     height: 300px;
-    background-color: white;
+    background-color: rgba(145,174,173,0.24);
     box-shadow:0 1px 5px  rgba(9,31,35,0.47);
   }
   .userIcon{
@@ -81,7 +81,7 @@
   .recentlyUpdate{
     margin-top: 30px;
     min-height: 200px;
-    background-color: white;
+    background-color: rgba(145,174,173,0.24);
     box-shadow:0 1px 5px  rgba(9,31,35,0.47);
   }
 

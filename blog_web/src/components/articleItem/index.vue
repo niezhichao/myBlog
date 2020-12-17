@@ -35,12 +35,11 @@
 <style scoped>
   .art-content{
     background-color: white;
-    margin-top: 5px;
     box-shadow:0 1px 5px  rgba(9,31,35,0.47);
   }
 
   .art-content:hover{
-    background-color: rgba(18,226,225,0);
+    background-color: rgba(75,88,84,0.26);
   }
 
   .art-title{

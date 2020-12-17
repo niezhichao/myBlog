@@ -2,6 +2,21 @@
   <div class="homePage">
     <div id="homePageContainer">
       <home-page-header :headerMenu="headerMenu"/>
+      <div class="nav-line" style="display: flex">
+
+        <div class="nav-home" style="width:100px;height: 50px;background-color: rgba(68,99,198,0.74)">
+          <div style="display: block;padding-top: 15px;padding-left: 5px;color: whitesmoke;">
+            <span class="nav-hover" >网站首页</span>
+          </div>
+        </div>
+        <div style="width:100px;height: 50px;background-color: rgba(30,101,62,0.36)">
+          <div style="padding-top: 15px;padding-left: 5px;color: whitesmoke">
+            <span class="nav-hover">SpringCloud</span>
+          </div>
+
+        </div>
+      </div>
+    <!--  <el-divider></el-divider>-->
       <div class="app-content">
         <app-main/>
       </div>
@@ -48,8 +63,7 @@
 
   .homePage {
     height: 100%;
-    /*background-color: rgba(26, 71, 60, 0.15);*/
-    background-color: rgba(17,74,74,0.09);
+    background-color:#f6f6f6;
     overflow-y: auto;
   }
 
@@ -66,5 +80,11 @@ padding-top: 10px;
     height: 30px;
     clear: both;
     text-align: center;
+  }
+
+  .nav-hover:hover{
+    text-decoration: underline;
+    color: #409eff;
+    cursor: pointer;
   }
 </style>

@@ -44,9 +44,10 @@
     margin-top: 10px;
     float: left;
     position: relative;
+    box-shadow:3px 3px 10px  rgba(9,31,35,0.47);
   }
   .content-block{
-    background-color: white;
+    background-color: rgba(23,146,4,0.4);
     padding-left: 10px;
     padding-right: 10px;
     min-height: 700px;

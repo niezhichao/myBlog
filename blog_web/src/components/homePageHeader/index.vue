@@ -35,7 +35,7 @@
 .homePageHeader{
   height: 50px;
   margin: auto;
-  background-color: white;
+  background-color: rgba(65,125,174,0.44);
   box-shadow:0 1px 5px #e9e9e9;
 }
 .search_style{
