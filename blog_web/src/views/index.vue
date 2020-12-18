@@ -6,7 +6,9 @@
 
         <div class="nav-home" style="width:100px;height: 50px;background-color: rgba(68,99,198,0.74)">
           <div style="display: block;padding-top: 15px;padding-left: 5px;color: whitesmoke;">
-            <span class="nav-hover" >网站首页</span>
+            <router-link  to="/" tag="div">
+              <span class="nav-hover" >网站首页</span>
+            </router-link>
           </div>
         </div>
         <div style="width:100px;height: 50px;background-color: rgba(30,101,62,0.36)">
@@ -31,7 +33,7 @@
 
 <script>
   import homePageHeader from "../components/homePageHeader";
-  import {getHomeHeaderMenu} from "../api/home"
+  import {getHomeHeaderMenu} from "../api/home";
   import appMain from "./appMain";
 
   export default {
@@ -44,6 +46,9 @@
       return {
         headerMenu: []
       }
+    },
+    methods:{
+
     },
     mounted() {
       getHomeHeaderMenu().then(response => {

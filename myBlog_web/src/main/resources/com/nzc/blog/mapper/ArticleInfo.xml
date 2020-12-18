@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nzc.blog.web.dao.ArticleInfoDao">
+
+    <select id="getArticleInfoById" resultType="com.nzc.blog.web.vo.ArticleInfoVo">
+        select
+        a.content as content,
+        a.title as title,
+        a.publish_time as publicTime,
+        b.type_name as sortName
+        from blog_info a
+        left join blog_type b on a.blog_sort_id=b.blog_type_id where a.blog_id=#{id}
+    </select>
+
+</mapper>
+

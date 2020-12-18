@@ -2,7 +2,7 @@
     <div class="articleItem">
 
       <div class="art-content">
-        <router-link to="/article/display" tag="div">
+        <router-link :to="{path:'/article/display',query:{id:intro.pid}}" tag="div">
           <div class="art-title">{{intro.title}}</div>
          <div class="art-intro">{{intro.introDesc}}</div>
         </router-link>

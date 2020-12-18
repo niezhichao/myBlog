@@ -25,4 +25,11 @@ public class BlogIntroController implements BlogIntroRestApi {
         List<BlogIntroVo> homeIntros = blogIntroService.homePageBlogIntros(BlogConstants.HOME_INTRO_SIZE);
         return ResultInfo.response(homeIntros);
     }
+
+    @GetMapping("/sort")
+    @Override
+    public ResultInfo homePageBlogIntrosBySortId(String id) {
+        List<BlogIntroVo> homeIntros = blogIntroService.homePageBlogIntrosBySortId(id);
+        return ResultInfo.response(homeIntros);
+    }
 }

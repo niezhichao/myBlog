@@ -4,4 +4,5 @@ import com.nzc.blog.common.result.ResultInfo;
 
 public interface BlogIntroRestApi {
     ResultInfo homePageBlogIntros();
+    ResultInfo homePageBlogIntrosBySortId(String id);
 }

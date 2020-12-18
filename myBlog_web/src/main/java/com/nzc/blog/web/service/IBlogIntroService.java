@@ -7,4 +7,5 @@ import java.util.List;
 public interface IBlogIntroService {
 
     List<BlogIntroVo> homePageBlogIntros(int size);
+    List<BlogIntroVo> homePageBlogIntrosBySortId(String id);
 }

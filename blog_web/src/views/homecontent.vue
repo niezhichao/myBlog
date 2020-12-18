@@ -21,6 +21,7 @@
   import articleItem from "../components/articleItem";
   import rightSide from "../components/rightSide";
   import {getHomePageIntros} from "../api/blogIntro";
+  import {getHomePageIntrosBySortId} from "../api/blogIntro"
     export default {
         name: "homecontent",
         components:{
@@ -31,6 +32,31 @@
           return {
             intros:[],
           }
+      },
+      methods:{
+        getIntrosBySortId(id){
+          var res;
+          var param={
+            id:id
+          };
+          getHomePageIntrosBySortId(param).then(response => {
+            if (response.resCode == this.$COMMON_CODE.RESULT_CODE.SUCCESS) {
+              this.intros = response.response;
+            }
+          });
+        }
+      },
+      computed:{
+        /*dynamicSortId(){
+          console.log(1234)
+          let dynamicSortId = this.$store.getters.dynamicSortId;
+          return dynamicSortId;
+        }*/
+      },
+      watch:{
+        /*dynamicSortId(){
+          this.getIntrosBySortId(this.dynamicSortId);
+        }*/
       },
       mounted(){
         getHomePageIntros().then(response=>{

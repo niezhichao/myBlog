@@ -8,8 +8,9 @@ export const RouterMapConfig=[
   {
     path: '/',
     component: home,
+    redirect: '/home',
     children: [{
-      path: '/',
+      path: '/home',
       component: () => import('@/views/homecontent')
     }]
   },

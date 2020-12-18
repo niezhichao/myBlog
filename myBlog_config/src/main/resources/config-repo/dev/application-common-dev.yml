@@ -15,7 +15,6 @@ spring:
         probability: 1
 mybatis:
   mapper-locations: classpath:/com/nzc/blog/mapper/*.xml
-  type-aliases-package: com.nzc.blog.*.entity
 
 #
 # reasonable: 分页合理化参数，默认值为false。当该参数设置为 true 时，

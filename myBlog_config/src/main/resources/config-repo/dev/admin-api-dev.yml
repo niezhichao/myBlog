@@ -9,3 +9,5 @@ spring:
 #增加common-dev的profiles 为了加载公共配置  application-common-dev.yml
   profiles:
       include: common-dev
+mybatis:
+  type-aliases-package: com.nzc.blog.admin.entity

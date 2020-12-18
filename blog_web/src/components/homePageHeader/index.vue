@@ -2,17 +2,20 @@
      <div class="homePageHeader">
        <div class="nav-wrap">
          <div class="nav-logo-block" style="float: left">
-           <span class="logo-place">Coding What You See,Creating What You want</span>
+           <span class="logo-place" style="color: ghostwhite">Coding What You See,Creating What You Want</span>
          </div>
          <div class="navCtent" style="  float: right">
            <ul class="navHeader">
-             <li class="navItem">首页</li>
-             <li class="navItem" v-for="item,index in headerMenu">{{item.typeName}}</li>
+            <!-- <li class="navItem">首页</li>-->
+             <li @click="headerMenuEvent(item.pid)" class="navItem" v-for="item,index in headerMenu">{{item.typeName}}</li>
              <li class="navItem">其他</li>
              <li class="search_style">
                <el-input size="mini" v-model="s_test">
                  <el-button class="search_btn" slot="append" icon="el-icon-search">搜索</el-button>
              </el-input></li>
+             <li class="login-btn">
+               <el-button size="mini" disabled>登录</el-button>
+             </li>
            </ul>
          </div>
        </div>
@@ -27,6 +30,12 @@
           return {
             s_test:""
           }
+      },
+      methods:{
+        headerMenuEvent(val){
+          console.log(val);
+          this.$store.dispatch("changeMenuId", val);
+        }
       }
     }
 </script>
@@ -40,7 +49,7 @@
 }
 .search_style{
   display:inline-block;
-  margin-right: 50px;
+  margin-right: 10px;
 }
 
 .search_btn:hover{
@@ -78,6 +87,10 @@ ul.navHeader{
 
 .logo-place,.navItem{
   color: rgba(0,0,0,0.68);
+}
+
+.login-btn{
+  display:inline-block;
 }
 
 .logo-place{

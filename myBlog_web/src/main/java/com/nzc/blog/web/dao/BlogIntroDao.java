@@ -11,6 +11,6 @@ import java.util.List;
 @Component
 public interface BlogIntroDao {
     List<BlogIntroVo>  getBlogIntros();
-
     List<BlogIntroVo> homePageBlogIntros(@Param("size") int size);
+    List<BlogIntroVo> homePageBlogIntrosBySortId(@Param("id") String id,@Param("size") int size);
 }

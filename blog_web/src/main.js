@@ -8,6 +8,7 @@ import Element from 'element-ui'
 import  'element-ui/lib/theme-chalk/index.css'
 import '@/icons'
 import commCodeUtils from './utils/commCodeUtils';
+import store from './store'
 
 Vue.config.productionTip = false
 
@@ -27,6 +28,7 @@ Vue.directive('highlight',function (el) {
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  store,
   router,
   render: h => h(App),
 })
