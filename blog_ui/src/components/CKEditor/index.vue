@@ -12,7 +12,7 @@
             editor: null,
             editorData:"",
             editorConfig:{
-              extraPlugins:"uploadimage,button,panelbutton,colorbutton",
+              extraPlugins:"uploadimage,button,panelbutton,colorbutton,codesnippet",
               uploadUrl: process.env.GATEWAY_API+'file/upload1',
               language:"en",
               height :this.height,

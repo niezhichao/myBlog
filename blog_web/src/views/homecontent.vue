@@ -3,11 +3,11 @@
     <div class="leftSideBar">
 
     </div>
-    <div v-if="intros.length>0" class="app-article-content">
+    <div class="app-article-content">
       <article-item  v-if="intros.length" v-for="item,index in intros" :intro="item" v-bind:key="item.title"/>
     </div>
 
-    <div v-else >
+    <div v-if="notEmpty" >
         <h2  class="warning-msg" style="color: rgba(226,92,95,0.84)">很抱歉本次查询无结果，请联系管理员~~~~~</h2>
         <i class=""></i>
     </div>
@@ -31,6 +31,7 @@
       data(){
           return {
             intros:[],
+            notEmpty:false
           }
       },
       methods:{
@@ -41,29 +42,52 @@
           };
           getHomePageIntrosBySortId(param).then(response => {
             if (response.resCode == this.$COMMON_CODE.RESULT_CODE.SUCCESS) {
-              this.intros = response.response;
+              /*this.intros = response.response;*/
+              var result = response.response;
+              if (result.length>0){
+                this.notEmpty =false;
+              }else{
+                this.notEmpty =true;
+              }
+              this.intros = result;
+            }
+          });
+        },
+        getHomeIntros(){
+          getHomePageIntros().then(response=>{
+            if (response.resCode == this.$COMMON_CODE.RESULT_CODE.SUCCESS) {
+              /*this.intros = response.response;*/
+              var result = response.response;
+              if (result.length>0){
+                this.notEmpty =false;
+              }else{
+                this.notEmpty =true;
+              }
+              this.intros = result;
             }
           });
         }
       },
       computed:{
-        /*dynamicSortId(){
-          console.log(1234)
+        dynamicSortId(){
           let dynamicSortId = this.$store.getters.dynamicSortId;
           return dynamicSortId;
-        }*/
+        }
       },
       watch:{
-        /*dynamicSortId(){
+        dynamicSortId(){
+          if (this.dynamicSortId == ""){
+            return this.getHomeIntros();
+          }
           this.getIntrosBySortId(this.dynamicSortId);
-        }*/
+        }
       },
       mounted(){
-        getHomePageIntros().then(response=>{
-          if (response.resCode == this.$COMMON_CODE.RESULT_CODE.SUCCESS) {
-            this.intros = response.response;
-          }
-        });
+        var id = this.$store.getters.dynamicSortId;//点击顶部菜单
+        if (id !="" && id !=undefined){
+          return this.getIntrosBySortId(id);
+        }
+        this.getHomeIntros();
       }
     }
 

@@ -6,14 +6,14 @@
 
         <div class="nav-home" style="width:100px;height: 50px;background-color: rgba(68,99,198,0.74)">
           <div style="display: block;padding-top: 15px;padding-left: 5px;color: whitesmoke;">
-            <router-link  to="/" tag="div">
-              <span class="nav-hover" >网站首页</span>
-            </router-link>
+              <div>
+                <span @click="homeTabClick" class="nav-hover" >网站首页</span>
+              </div>
           </div>
         </div>
-        <div style="width:100px;height: 50px;background-color: rgba(30,101,62,0.36)">
-          <div style="padding-top: 15px;padding-left: 5px;color: whitesmoke">
-            <span class="nav-hover">SpringCloud</span>
+        <div style="min-width:100px;height: 50px;background-color: rgba(30,101,62,0.36)">
+          <div style="padding-top: 15px;padding-left: 5px;padding-right:5px;color: whitesmoke">
+            <span class="nav-location">当前位置:{{tabName}}</span>
           </div>
 
         </div>
@@ -44,11 +44,28 @@
     },
     data() {
       return {
-        headerMenu: []
+        headerMenu: [],
       }
     },
     methods:{
+      homeTabClick(){
+        this.$store.dispatch("changeMenuId", "");
+        this.$store.dispatch("changeTabName", "HOME");
+        var path = this.$route.path;
+        if (path != "/home"){
+          this.$router.push("/home");
+        }
+      }
+    },computed:{
+      tabName(){
+        let tabName = this.$store.getters.dynamicSortName;
+        return tabName;
+      }
+    },
+    watch:{
+      tabName(){
 
+      }
     },
     mounted() {
       getHomeHeaderMenu().then(response => {
@@ -91,5 +108,8 @@ padding-top: 10px;
     text-decoration: underline;
     color: #409eff;
     cursor: pointer;
+  }
+  .nav-location:hover{
+    color: rgba(39,17,111,0.58);
   }
 </style>

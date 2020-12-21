@@ -16,6 +16,7 @@ public class BlogIntroVo extends BaseVo {
     public String title;//标题
     public String introDesc;//简介内容
     public String sortName;//分类名称
+    public String sortId;//类型 id
     /**
      * 发布时间
      * DateTimeFormat 入参格式化

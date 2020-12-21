@@ -7,7 +7,7 @@
          <div class="navCtent" style="  float: right">
            <ul class="navHeader">
             <!-- <li class="navItem">首页</li>-->
-             <li @click="headerMenuEvent(item.pid)" class="navItem" v-for="item,index in headerMenu">{{item.typeName}}</li>
+             <li @click="headerMenuEvent(item.pid,item.typeName)" :class="headerMenuClass" v-for="item,index in headerMenu" :id="item.pid">{{item.typeName}}</li>
              <li class="navItem">其他</li>
              <li class="search_style">
                <el-input size="mini" v-model="s_test">
@@ -28,13 +28,18 @@
        props:["headerMenu"],
       data(){
           return {
-            s_test:""
+            s_test:"",
+            headerMenuClass:"navItem",
           }
       },
       methods:{
-        headerMenuEvent(val){
-          console.log(val);
-          this.$store.dispatch("changeMenuId", val);
+        headerMenuEvent(id,name){
+          this.$store.dispatch("changeMenuId", id);
+          this.$store.dispatch("changeTabName", name);
+          var path = this.$route.path;
+          if (path != "/home"){
+            this.$router.push("/home");
+          }
         }
       }
     }
@@ -83,6 +88,7 @@ ul.navHeader{
 .navItem:hover{
   cursor: pointer;
   text-decoration: underline;
+  color: #409eff;
 }
 
 .logo-place,.navItem{
@@ -95,5 +101,8 @@ ul.navHeader{
 
 .logo-place{
   font-size: 20px;
+}
+.active{
+  color: #409eff;
 }
 </style>

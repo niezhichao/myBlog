@@ -4,7 +4,7 @@
        <div class="article-content">
          <div style="text-align: center;"><h1>{{articleInfo.title}}</h1></div>
          <div style="text-align: center">
-           <i class="el-icon-link style_pointer"><span class="style_underline" style="font-size: 5px;padding-left: 5px;color: rgba(5,9,9,0.65)">{{articleInfo.sortName}}</span></i>
+           <i @click="clickTypeName(articleInfo.sortId,articleInfo.sortName)" class="el-icon-link style_pointer"><span class="style_underline" style="font-size: 5px;padding-left: 5px;color: rgba(5,9,9,0.65)">{{articleInfo.sortName}}</span></i>
            <svg-icon style="padding-left: 20px;" icon-class="time" class-name="card-panel-icon">
            </svg-icon>
            <span style="font-size: 5px;padding-left: 3px;color: rgba(5,9,9,0.65)">{{articleInfo.publicTime}}</span>
@@ -42,7 +42,12 @@
                 this.articleInfo = response.response;
               }
             });
-          }
+          },
+        clickTypeName(id,name){
+          this.$store.dispatch("changeMenuId", id);
+          this.$store.dispatch("changeTabName", name);
+          this.$router.push("/home");
+        }
       },
       mounted(){
           console.log();

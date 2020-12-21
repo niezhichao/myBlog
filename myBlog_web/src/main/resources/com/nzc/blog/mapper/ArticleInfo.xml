@@ -9,7 +9,8 @@
         a.content as content,
         a.title as title,
         a.publish_time as publicTime,
-        b.type_name as sortName
+        b.type_name as sortName,
+        a.blog_sort_id as sortId
         from blog_info a
         left join blog_type b on a.blog_sort_id=b.blog_type_id where a.blog_id=#{id}
     </select>

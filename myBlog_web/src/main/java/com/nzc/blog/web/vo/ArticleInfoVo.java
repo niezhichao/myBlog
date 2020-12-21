@@ -18,6 +18,7 @@ import java.util.Date;
 public class ArticleInfoVo extends BaseVo {
     private String content;//文章内容
     private String sortName;//分类名称
+    private String sortId;//分类id
     private String title;//标题
     /**
      * 发布时间
